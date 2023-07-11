@@ -38,6 +38,11 @@ kotlin {
 
                 //Integration with Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+
+                //Integration with Koin for Ktor
+                val koinKtor = "koinKtor"
+                implementation ("io.insert-koin:koin-ktor:$koinKtor")
+                implementation ("io.insert-koin:koin-logger-slf4j:$koinKtor")
             }
         }
         val jvmTest by getting
