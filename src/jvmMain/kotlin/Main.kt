@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import ui.composable.mainCard
+import ui.composable.search
 import ui.theme.Typography
 
 @Composable
@@ -13,12 +15,17 @@ import ui.theme.Typography
 fun App() {
 
     MaterialTheme {
-        Column {
-            Text(text = "TEXT1", style = Typography.h1.copy(color = Color.Cyan))
-            Text(text = "TEXT2", style = Typography.h2)
-            Text(text = "TEXT3", style = Typography.h3)
-            Text(text = "TEXT4")
+        Column() {
+            search()
+            mainCard()
         }
+
+//        Column {
+//            Text(text = "TEXT1", style = Typography.h1.copy(color = Color.Cyan))
+//            Text(text = "TEXT2", style = Typography.h2)
+//            Text(text = "TEXT3", style = Typography.h3)
+//            Text(text = "TEXT4")
+//        }
     }
 }
 

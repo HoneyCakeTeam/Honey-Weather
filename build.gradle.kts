@@ -41,8 +41,10 @@ kotlin {
 
                 //Integration with Koin for Ktor
                 val koinKtor = "3.4.1"
-                implementation ("io.insert-koin:koin-ktor:$koinKtor")
-                implementation ("io.insert-koin:koin-logger-slf4j:$koinKtor")
+                implementation("io.insert-koin:koin-ktor:$koinKtor")
+                implementation("io.insert-koin:koin-logger-slf4j:$koinKtor")
+                //icon
+                implementation("org.jetbrains.compose.material:material-icons-extended-desktop:1.4.1")
             }
         }
         val jvmTest by getting
