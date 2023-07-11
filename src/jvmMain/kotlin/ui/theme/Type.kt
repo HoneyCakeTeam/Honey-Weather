@@ -1,32 +1,29 @@
 package ui.theme
 
+import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-val titleLarge = TextStyle(
-    fontFamily = Robot,
-    fontWeight = FontWeight.Bold,
-    fontSize = 22.sp,
-    color = Black87,
-    lineHeight = 28.sp,
-    letterSpacing = 0.sp
-)
+val Typography = Typography(
+    h1 = TextStyle(
+        fontFamily = Robot,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        color = Black87
+    ),
 
-val label = TextStyle(
-    fontFamily = Robot,
-    fontWeight = FontWeight.Medium,
-    fontSize = 18.sp,
-    color = Black60,
-    lineHeight = 16.sp,
-    letterSpacing = 0.5.sp
-)
+    h2 = TextStyle(
+        fontFamily = Robot,
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp,
+        color = Black60
+    ),
 
-val labelSmall = TextStyle(
-    fontFamily = Robot,
-    fontWeight = FontWeight.Normal,
-    fontSize = 11.sp,
-    color = Black37,
-    lineHeight = 16.sp,
-    letterSpacing = 0.5.sp
+    h3 = TextStyle(
+        fontFamily = Robot,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        color = Black37,
+    )
 )
