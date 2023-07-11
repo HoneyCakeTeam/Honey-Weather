@@ -40,7 +40,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
                 //Integration with Koin for Ktor
-                val koinKtor = "koinKtor"
+                val koinKtor = "3.4.1"
                 implementation ("io.insert-koin:koin-ktor:$koinKtor")
                 implementation ("io.insert-koin:koin-logger-slf4j:$koinKtor")
             }
