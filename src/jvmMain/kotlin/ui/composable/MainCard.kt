@@ -2,87 +2,107 @@ package ui.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Speed
+import androidx.compose.material.icons.outlined.WaterDrop
+import androidx.compose.material.icons.outlined.WindPower
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ui.theme.Black87
 import ui.theme.Typography
 
 @Composable
-fun mainCard() {
+fun MainCard() {
 
     Card(
-        modifier = Modifier.height(300.dp).width(500.dp).padding(top = 16.dp, start = 16.dp), elevation = 0.dp
+        modifier = Modifier.height(400.dp).fillMaxWidth().clip(RoundedCornerShape(16.dp)),
+        elevation = 0.dp
     ) {
-        Box() {
+        Box {
             Image(
                 painterResource("image/image.jpg"),
                 contentDescription = null,
-                modifier = Modifier.height(300.dp).width(500.dp).alpha(0.5f),
+                modifier = Modifier.fillMaxSize().alpha(0.2F),
                 contentScale = ContentScale.Crop
             )
-            Column() {
-                Row() {
-                    Row {
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 28.dp, bottom = 16.dp, start = 16.dp, end = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Row(
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.padding(vertical = 6.dp, horizontal = 8.dp)
+                    ) {
                         Icon(
                             imageVector = Icons.Outlined.LocationOn,
-                            contentDescription = null,
-                            modifier = Modifier.padding(top = 16.dp, start = 16.dp),
+                            contentDescription = "content description",
+                            modifier = Modifier.size(ButtonDefaults.IconSize),
                         )
                         Text(
                             text = "Gotham",
                             style = Typography.h2,
-                            modifier = Modifier.padding(start = 4.dp, top = 16.dp).align(
-                                Alignment.CenterVertically,
-                            )
                         )
                     }
                     Text(
-                        text = "Today00:32PM",
-                        style = Typography.h3,
-                        modifier = Modifier.padding(top = 16.dp, start = 200.dp).align(Alignment.CenterVertically)
+                        text = "Today 00:32 PM",
+                        style = Typography.h3.copy(Black87),
+                        modifier = Modifier.align(CenterVertically)
                     )
                 }
-
-                Text(
-                    text = "12", style = Typography.h1.copy(fontSize = 100.sp),
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-                Text(
-                    text = "Mostly Clear", style = Typography.h3,
-                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(start = 16.dp)
-                )
-
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(150.dp),
-                    modifier = Modifier.padding(top = 16.dp, start = 16.dp)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Row() {
-//                    Icon(imageVector = Icons.Outlined.Winds, contentDescription = null)
+                    Text(
+                        text = "12°", style = Typography.h1.copy(fontSize = 100.sp),
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                    Text(
+                        text = "Mostly Clear", style = Typography.h2.copy(Black87),
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1F))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null)
                         Text(text = "728hpa")
-
                     }
-                    Row() {
-//                    Icon(imageVector = Icons.Outlined.Moisture, contentDescription = null)
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null)
                         Text(text = "32%")
-
                     }
-                    Row() {
-//                    Icon(imageVector = Icons.Outlined.Winds, contentDescription = null)
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null)
                         Text(text = "12km/h")
-
                     }
                 }
-
             }
         }
     }

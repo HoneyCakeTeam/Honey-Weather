@@ -37,6 +37,5 @@ fun search() {
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
         }
-        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = null)
     }
 }
