@@ -29,18 +29,16 @@ fun TodayHourlyWeather() {
     Spacer(modifier = Modifier.height(16.dp))
 
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
         items(12) { position ->
 
-            Card(
-                modifier = Modifier.padding(4.dp)
-                    .background(
-                        color = CardBackgroundColor,
-                        shape = RoundedCornerShape(16.dp)
-                    ),
-                contentColor = CardBackgroundColor,
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = CardBackgroundColor, shape = RoundedCornerShape(16.dp))
+                    .padding(all = 8.dp)
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
