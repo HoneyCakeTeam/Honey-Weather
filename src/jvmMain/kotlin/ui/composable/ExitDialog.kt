@@ -1,15 +1,16 @@
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import ui.theme.DarkBlue
 
 @Composable
 fun CloseConfirmationDialog(
@@ -41,22 +42,27 @@ fun CloseConfirmationDialog(
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     OutlinedButton(
+                        border = BorderStroke(
+                            width = 1.dp,
+                            color = DarkBlue
+                        ),
                         onClick = onCloseRequest,
-                        Modifier
+                        modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
                             .weight(1F)
                     ) {
-                        Text(text = "Cancel")
+                        Text(text = "Cancel", color = DarkBlue)
                     }
                     Button(
+                        colors = ButtonDefaults.buttonColors(DarkBlue),
                         onClick = onConfirmClose,
-                        Modifier
+                        modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
                             .weight(1F)
                     ) {
-                        Text(text = "Exit")
+                        Text(text = "Exit", color = Color.White)
                     }
                 }
             }
