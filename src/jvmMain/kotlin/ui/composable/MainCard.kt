@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -36,7 +37,7 @@ fun MainCard() {
             Image(
                 painterResource("image/image.jpg"),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize().alpha(0.2F),
+                modifier = Modifier.fillMaxSize().alpha(0.2F).blur(1.dp),
                 contentScale = ContentScale.Crop
             )
             Column {
