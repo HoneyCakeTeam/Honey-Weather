@@ -43,7 +43,8 @@ kotlin {
                 val koinKtor = "3.4.1"
                 implementation("io.insert-koin:koin-ktor:$koinKtor")
                 implementation("io.insert-koin:koin-logger-slf4j:$koinKtor")
-                //icon
+
+                //Integration with Compose icons
                 implementation("org.jetbrains.compose.material:material-icons-extended-desktop:1.4.1")
             }
         }

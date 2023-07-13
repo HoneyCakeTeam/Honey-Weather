@@ -1,15 +1,14 @@
 package ui.composable
 
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.sp
 import ui.theme.DarkBlue
 
 @Composable
@@ -25,6 +24,7 @@ fun SearchBar(
         onValueChange = {
             searchText = it
         },
+        textStyle = TextStyle.Default.copy(fontSize = 16.sp),
         label = { Text(text = "Search") },
         placeholder = { Text(text = "Search something here...") },
         colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -34,6 +34,7 @@ fun SearchBar(
             cursorColor = DarkBlue,
             leadingIconColor = DarkBlue
         ),
-        maxLines = 1
+        maxLines = 1,
+        singleLine = true,
     )
 }
