@@ -19,6 +19,11 @@ fun SideBar() {
             .padding(8.dp),
         horizontalAlignment = Alignment.Start,
     ) {
-
+        Spacer(modifier = Modifier.height(24.dp))
+        WeekHeader()
+        Spacer(modifier = Modifier.height(24.dp))
+        TodayHourlyWeather()
+        Spacer(modifier = Modifier.height(8.dp))
+        WeaklyWeatherRecycle()
     }
 }

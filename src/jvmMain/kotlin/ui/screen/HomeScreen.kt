@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import ui.composable.BodyContent
 import ui.composable.CustomDivider
 import ui.composable.SideBar
+import ui.composable.WeaklyWeatherContent
 import ui.theme.BackgroundColor
 
 @Composable
