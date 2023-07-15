@@ -1,5 +1,7 @@
 package ui.viewmodel
 
+
+import domain.entity.WeatherEntity
 import domain.usecase.GetRemainWeatherItemsUseCase
 import domain.usecase.GetTodayWeatherItemsUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -10,12 +12,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.xml.sax.ErrorHandler
 
-class WeatherViewModel : KoinComponent {
-    private val getTodayWeatherItemsUseCase: GetTodayWeatherItemsUseCase by inject()
-    private val getRemainWeatherItemsUseCase: GetRemainWeatherItemsUseCase by inject()
-
+class WeatherViewModel(
+    private val getTodayWeatherItems: GetTodayWeatherItemsUseCase,
+    private val getRemainWeatherItems: GetRemainWeatherItemsUseCase
+): KoinComponent {
     private val _weatherUiState = MutableStateFlow(WeatherUiState())
     val weatherUiState = _weatherUiState.asStateFlow()
 
@@ -25,29 +26,26 @@ class WeatherViewModel : KoinComponent {
 
     private fun getWeather() {
         _weatherUiState.update { it.copy(isLoading = true) }
-
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 _weatherUiState.update { it.copy(isLoading = true) }
-
-                val todayWeatherData = getTodayWeatherItemsUseCase("40", "11")
-                val restOfWeakWeatherData = getRemainWeatherItemsUseCase("40", "11")
-                println(todayWeatherData)
-                println(restOfWeakWeatherData)
-                _weatherUiState.update {
-                    it.copy(
-                        todayWeatherItems = todayWeatherData,
-                        remainWeatherItems = restOfWeakWeatherData
-                    )
-                }
-                println(weatherUiState.value.remainWeatherItems)
-                println(weatherUiState.value.todayWeatherItems)
+                val todayWeatherData = getTodayWeatherItems("40", "11")
+                val restOfWeakWeatherData = getRemainWeatherItems("40", "11")
+                onGetWeatherSuccess(todayWeatherData, restOfWeakWeatherData)
             } catch (e: Exception) {
-                println("Error occurred: ${e.message}")
                 onGetWeatherError(e.message)
             } finally {
                 _weatherUiState.update { it.copy(isLoading = false) }
             }
+        }
+    }
+
+    private fun onGetWeatherSuccess(todayWeatherData: WeatherEntity, restOfWeakWeatherData: WeatherEntity) {
+        _weatherUiState.update {
+            it.copy(
+                todayWeatherItems = todayWeatherData,
+                remainWeatherItems = restOfWeakWeatherData
+            )
         }
     }
 
