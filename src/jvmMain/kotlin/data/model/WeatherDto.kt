@@ -7,6 +7,6 @@ data class WeatherDto(
     val cod: String,
     val message: Int,
     val cnt: Int,
-    val list: List<ForecastItem>,
-    val city: City
+    val list: List<ForecastItemDto>,
+    val city: CityDto
 )

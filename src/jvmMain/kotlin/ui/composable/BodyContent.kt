@@ -10,9 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ui.theme.BackgroundColor
 import ui.theme.Typography
+import ui.viewmodel.WeatherUiState
 
 @Composable
-fun BodyContent() {
+fun BodyContent(
+    state: WeatherUiState
+) {
     Column(
         modifier = Modifier
             .fillMaxHeight()

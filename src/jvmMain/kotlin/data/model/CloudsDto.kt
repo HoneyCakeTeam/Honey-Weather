@@ -3,6 +3,6 @@ package data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Sys(
-    val pod: String
+data class CloudsDto(
+    val all: Int
 )

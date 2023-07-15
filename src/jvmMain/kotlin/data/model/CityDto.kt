@@ -4,10 +4,10 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class City(
+data class CityDto(
     val id: Int,
     val name: String,
-    val coord: Coord,
+    val coord: CoordDto,
     val country: String,
     val population: Int,
     val timezone: Int,

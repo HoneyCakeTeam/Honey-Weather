@@ -3,14 +3,14 @@ package data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ForecastItem(
+data class ForecastItemDto(
     val dt: Long,
-    val main: Main,
+    val main: MainDto,
     val weather: List<Weather>,
-    val clouds: Clouds,
-    val wind: Wind,
+    val clouds: CloudsDto,
+    val wind: WindDto,
     val visibility: Int,
     val pop: Double,
-    val sys: Sys,
+    val sys: SysDto,
     val dt_txt: String
 )

@@ -1,5 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
+val ktor_version: String by project
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version "1.4.1"
@@ -29,12 +31,13 @@ kotlin {
                 implementation(compose.desktop.currentOs)
 
                 // Integration with Ktor
-                implementation("io.ktor:ktor-server-core:2.3.2")
-                implementation("io.ktor:ktor-server-netty:2.3.2")
-                implementation("io.ktor:ktor-client-core:1.6.4")
-                implementation("io.ktor:ktor-client-cio:1.6.4")
-                implementation("io.ktor:ktor-client-serialization:1.6.4")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+                implementation("io.ktor:ktor-client-core:$ktor_version")
+                implementation("io.ktor:ktor-client-cio:$ktor_version")
+                implementation("io.ktor:ktor-client-serialization:$ktor_version")
+                implementation("io.ktor:ktor-client-logging:$ktor_version")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+                implementation("com.google.code.gson:gson:2.8.8")
+                implementation("io.ktor:ktor-client-gson:$ktor_version")
 
                 //Integration with Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")

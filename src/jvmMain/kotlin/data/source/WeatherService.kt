@@ -1,5 +1,6 @@
 import data.model.WeatherDto
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 
 class WeatherService(private val httpClient: HttpClient) {

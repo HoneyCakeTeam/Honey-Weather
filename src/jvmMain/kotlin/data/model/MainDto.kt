@@ -3,7 +3,7 @@ package data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Main(
+data class MainDto(
     val temp: Double,
     val feels_like: Double,
     val temp_min: Double,

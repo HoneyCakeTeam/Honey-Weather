@@ -1,4 +1,0 @@
-package di
-
-class Empty {
-}
