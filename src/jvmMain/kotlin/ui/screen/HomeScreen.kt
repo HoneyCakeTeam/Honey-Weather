@@ -20,7 +20,6 @@ import ui.viewmodel.WeatherViewModel
 fun HomeScreen() {
     val weatherViewModel: WeatherViewModel by inject(WeatherViewModel::class.java)
     val state by weatherViewModel.weatherUiState.collectAsState()
-
     HomeContent(state = state)
 }
 
@@ -30,7 +29,7 @@ fun HomeContent(
 ) {
     Box(modifier = Modifier.fillMaxSize().background(color = BackgroundColor)) {
         Row {
-            SideBar()
+            SideBar(state)
             CustomDivider()
             BodyContent(state)
         }

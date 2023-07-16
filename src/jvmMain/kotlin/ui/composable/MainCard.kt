@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ui.theme.Black87
 import ui.theme.Typography
+import ui.viewmodel.WeatherUiState
 
 @Composable
-fun MainCard() {
-
+fun MainCard(state: WeatherUiState) {
     Card(
         modifier = Modifier.height(400.dp).fillMaxWidth().clip(RoundedCornerShape(16.dp)),
         elevation = 0.dp
@@ -59,12 +59,12 @@ fun MainCard() {
                             modifier = Modifier.size(ButtonDefaults.IconSize),
                         )
                         Text(
-                            text = "Gotham",
+                            text = state.todayWeatherItems?.city ?: "N/A",
                             style = Typography.h2,
                         )
                     }
                     Text(
-                        text = "Today 00:32 PM",
+                        text = "Today ${state.todayWeather?.date ?: "N/A"}",
                         style = Typography.h3.copy(Black87),
                         modifier = Modifier.align(CenterVertically)
                     )
@@ -75,11 +75,13 @@ fun MainCard() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = "12°", style = Typography.h1.copy(fontSize = 100.sp),
+                        text = "${state.todayWeather?.weatherCondition?.temperature ?: "N/A"}°",
+                        style = Typography.h1.copy(fontSize = 100.sp),
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
                     Text(
-                        text = "Mostly Clear", style = Typography.h2.copy(Black87),
+                        text = state.todayWeather?.weatherDescriptions?.get(0)?.description ?: "N/A",
+                        style = Typography.h2.copy(Black87),
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
                 }
@@ -93,15 +95,15 @@ fun MainCard() {
                 ) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null)
-                        Text(text = "728hpa")
+                        Text(text = "${state.todayWeather?.weatherCondition?.pressure ?: "N/A"} hpa")
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null)
-                        Text(text = "32%")
+                        Text(text = "${state.todayWeather?.weatherCondition?.humidity ?: "N/A"}%")
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.Speed, contentDescription = null)
-                        Text(text = "12km/h")
+                        Text(text = "${state.todayWeather?.weatherCondition?.groundLevelPressure ?: "N/A"} km/h")
                     }
                 }
             }

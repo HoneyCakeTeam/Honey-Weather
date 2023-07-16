@@ -1,5 +1,6 @@
 package ui.composable
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -25,7 +26,7 @@ fun BodyContent(
     ) {
         SearchBar(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(16.dp))
-        MainCard()
+        MainCard(state)
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Today Highlights", style = Typography.h1)
         Spacer(modifier = Modifier.height(16.dp))
@@ -47,4 +48,9 @@ fun BodyContent(
             }
         }
     }
+}
+@Preview
+@Composable
+fun BodyContentPreview() {
+    BodyContent(state = WeatherUiState())
 }

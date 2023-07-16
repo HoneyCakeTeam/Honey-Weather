@@ -16,3 +16,4 @@ fun ForecastItemEntity.getForecastDate(): LocalDate {
 }
 
 
+
