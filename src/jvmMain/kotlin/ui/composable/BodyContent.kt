@@ -34,18 +34,45 @@ fun BodyContent(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            repeat(3) {
-                TodayHighlightsCard(modifier = Modifier.weight(1F))
-            }
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
+                "Wind",
+                "Today Wind Speed",
+                "${state.todayWeather?.wind?.speed} km/h"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Max & Min Temp",
+                "Max : ${state.todayWeather?.weatherCondition?.maxTemperature}",
+                "Min : ${state.todayWeather?.weatherCondition?.minTemperature}"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "SunRise & SunSet",
+                "SunRise : ${state.todayWeatherItems?.city?.sunriseTime}",
+                "SunSet : ${state.todayWeatherItems?.city?.sunsetTime}"
+            )
+
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            repeat(3) {
-                TodayHighlightsCard(modifier = Modifier.weight(1F))
-            }
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Pressure",
+                "Today Pressure",
+                "${state.todayWeather?.weatherCondition?.pressure} hpa"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Humidity",
+                "Today Humidaty",
+                "${state.todayWeather?.weatherCondition?.humidity} %"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Visibility",
+                "Today Visibility",
+                "${state.todayWeather?.visiability}"
+            )
+
         }
     }
 }

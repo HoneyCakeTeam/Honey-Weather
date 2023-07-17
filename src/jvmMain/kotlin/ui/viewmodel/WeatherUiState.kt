@@ -8,23 +8,25 @@ data class WeatherUiState(
     val error: String = "",
     val isLoading: Boolean = false,
     val isError: Boolean = false,
-    val todayWeather:ForecastItemUiState? = null,
+    val todayWeather: ForecastItemUiState? = null,
     val todayWeatherItems: WeatherItemUiState? = null,
     val remainWeatherItems: WeatherItemUiState? = null,
 )
 
 data class WeatherItemUiState(
     val forecastItems: List<ForecastItemUiState>,
-    val city: String
+    val city: CityUiState
 )
 
 data class ForecastItemUiState(
     val weatherCondition: WeatherDescriptionUiState,
     val weatherDescriptions: List<WeatherConditionUiState>,
+    val visiability : Int,
+    val wind: WindUiState,
     val date: String,
     val time: String
 
-    )
+)
 
 data class WeatherConditionUiState(
     val mainCondition: String,
@@ -48,10 +50,16 @@ data class CityUiState(
     val sunsetTime: Long
 )
 
+data class WindUiState(
+    val speed: Double,
+    val deg: Int,
+    val gust: Double
+)
+
 fun WeatherEntity.toUiState(): WeatherItemUiState {
     return WeatherItemUiState(
         forecastItems = forecastItems.map { it.toForecastItemUiState() },
-        city = city.name
+        city = city.toCityUiState()
     )
 }
 
@@ -59,6 +67,8 @@ fun ForecastItemEntity.toForecastItemUiState(): ForecastItemUiState {
     return ForecastItemUiState(
         weatherCondition = weatherDescription.toWeatherDescriptionUiState(),
         weatherDescriptions = weather.map { it.toWeatherConditionUiState() },
+        visiability = visibility,
+        wind = wind.toWindUiState(),
         date = convertToUserFriendlyDate(dateTime),
         time = convertToTimeFormat(dateTime)
     )
@@ -74,9 +84,9 @@ fun WeatherConditionEntity.toWeatherConditionUiState(): WeatherConditionUiState 
 
 fun WeatherDescriptionEntity.toWeatherDescriptionUiState(): WeatherDescriptionUiState {
     return WeatherDescriptionUiState(
-        temperature = (temperature-273.15).toInt(),
-        minTemperature = (minTemperature-273.15).toInt(),
-        maxTemperature = (maxTemperature-273.15).toInt(),
+        temperature = (temperature - 273.15).toInt(),
+        minTemperature = (minTemperature - 273.15).toInt(),
+        maxTemperature = (maxTemperature - 273.15).toInt(),
         pressure = pressure,
         seaLevelPressure = seaLevelPressure,
         humidity = humidity,
@@ -91,3 +101,12 @@ fun CityEntity.toCityUiState(): CityUiState {
         sunsetTime = sunset
     )
 }
+
+fun WindEntity.toWindUiState(): WindUiState {
+    return WindUiState(
+        speed = speed,
+        deg = deg,
+        gust = gust
+    )
+}
+

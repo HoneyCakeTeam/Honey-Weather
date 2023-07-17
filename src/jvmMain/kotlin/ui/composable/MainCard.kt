@@ -59,7 +59,7 @@ fun MainCard(state: WeatherUiState) {
                             modifier = Modifier.size(ButtonDefaults.IconSize),
                         )
                         Text(
-                            text = state.todayWeatherItems?.city ?: "N/A",
+                            text = state.todayWeatherItems?.city?.name ?: "N/A",
                             style = Typography.h2,
                         )
                     }

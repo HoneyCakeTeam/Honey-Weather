@@ -12,7 +12,8 @@ fun WeatherDto.toEntity(): WeatherEntity {
 fun ForecastItemDto.toForecastItemEntity(): ForecastItemEntity {
     val weatherDescription = main.toWeatherDescriptionEntity()
     val weatherEntities = weather.map { it.toWeatherEntity() }
-    return ForecastItemEntity(weatherDescription, weatherEntities, dt_txt)
+    val windEntity = wind.toWindEntity()
+    return ForecastItemEntity(weatherDescription, weatherEntities, visibility, windEntity, dt_txt)
 }
 
 fun MainDto.toWeatherDescriptionEntity(): WeatherDescriptionEntity {
@@ -23,8 +24,12 @@ fun Weather.toWeatherEntity(): WeatherConditionEntity {
     return WeatherConditionEntity(main, description, icon)
 }
 
+fun WindDto.toWindEntity(): WindEntity {
+    return WindEntity(speed, deg, gust)
+}
+
 fun CityDto.toEntity(): CityEntity {
-    return CityEntity(name, sunrise, sunset)
+    return CityEntity(name, timezone, sunrise, sunset)
 }
 
 
