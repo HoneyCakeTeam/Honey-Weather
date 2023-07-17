@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import getWeatherIconResource
 import ui.theme.*
 import ui.viewmodel.ForecastItemUiState
 
@@ -40,7 +41,7 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    Column() {
+                    Column{
                         Text(text = forecastItem.date, style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
@@ -53,13 +54,13 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
-                        text = "${forecastItem.weatherCondition.temperature}°",
+                        text = "${forecastItem.weatherDescriptions.temperature}°",
                         style = Typography.h2
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource("image/smiling_face.png"),
+                        painter = painterResource(getWeatherIconResource(forecastItem.weatherCondition.icon)),
                         contentDescription = "weather pic",
                         modifier = Modifier
                             .size(32.dp)

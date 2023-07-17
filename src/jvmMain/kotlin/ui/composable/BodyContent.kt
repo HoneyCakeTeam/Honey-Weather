@@ -1,6 +1,5 @@
 package ui.composable
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -38,17 +37,17 @@ fun BodyContent(
                 modifier = Modifier.weight(1F),
                 "Wind",
                 "Today Wind Speed",
-                "${state.todayWeather?.wind?.speed} km/h"
+                "${state.todayWeather.wind.speed} km/h"
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "Max & Min Temp",
-                "Max : ${state.todayWeather?.weatherCondition?.maxTemperature}",
-                "Min : ${state.todayWeather?.weatherCondition?.minTemperature}"
+                "Max : ${state.todayWeather.weatherDescriptions.maxTemperature}",
+                "Min : ${state.todayWeather.weatherDescriptions.minTemperature}"
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "SunRise & SunSet",
-                "SunRise : ${state.todayWeatherItems?.city?.sunriseTime}",
-                "SunSet : ${state.todayWeatherItems?.city?.sunsetTime}"
+                "SunRise : ${state.todayWeatherItems.city.sunriseTime}",
+                "SunSet : ${state.todayWeatherItems.city.sunsetTime}"
             )
 
         }
@@ -60,24 +59,19 @@ fun BodyContent(
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "Pressure",
                 "Today Pressure",
-                "${state.todayWeather?.weatherCondition?.pressure} hpa"
+                "${state.todayWeather.weatherDescriptions.pressure} hpa"
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "Humidity",
                 "Today Humidaty",
-                "${state.todayWeather?.weatherCondition?.humidity} %"
+                "${state.todayWeather.weatherDescriptions.humidity} %"
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
-                "${state.todayWeather?.visiability}"
+                "${state.todayWeather.visibility}"
             )
 
         }
     }
-}
-@Preview
-@Composable
-fun BodyContentPreview() {
-    BodyContent(state = WeatherUiState())
 }

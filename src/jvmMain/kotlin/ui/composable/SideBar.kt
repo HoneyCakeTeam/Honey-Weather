@@ -23,8 +23,8 @@ fun SideBar(state: WeatherUiState) {
         Spacer(modifier = Modifier.height(24.dp))
         WeekHeader()
         Spacer(modifier = Modifier.height(24.dp))
-        TodayHourlyWeather(state.todayWeatherItems?.forecastItems ?: emptyList())
+        TodayHourlyWeather(state.todayWeatherItems.forecastItems)
         Spacer(modifier = Modifier.height(8.dp))
-        WeaklyWeatherRecycle(state.remainWeatherItems?.forecastItems ?: emptyList())
+        WeaklyWeatherRecycle(state.remainWeatherItems.forecastItems)
     }
 }

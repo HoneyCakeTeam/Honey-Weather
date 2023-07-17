@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import getWeatherIconResource
 import ui.theme.Black60
 import ui.theme.Black87
 import ui.theme.CardBackgroundColor
@@ -56,7 +57,7 @@ fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource("image/smiling_face.png"),
+                        painter = painterResource(getWeatherIconResource(forecastItem.weatherCondition.icon)),
                         contentDescription = "weather pic",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -66,7 +67,7 @@ fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
-                        text = "${forecastItem.weatherCondition.temperature}°",
+                        text = "${forecastItem.weatherDescriptions.temperature}°",
                         style = Typography.body1.copy(color = Black87)
                     )
                 }

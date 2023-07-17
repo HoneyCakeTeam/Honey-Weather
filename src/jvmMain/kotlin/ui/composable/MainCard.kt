@@ -59,12 +59,12 @@ fun MainCard(state: WeatherUiState) {
                             modifier = Modifier.size(ButtonDefaults.IconSize),
                         )
                         Text(
-                            text = state.todayWeatherItems?.city?.name ?: "N/A",
+                            text = state.todayWeatherItems.city.name,
                             style = Typography.h2,
                         )
                     }
                     Text(
-                        text = "Today ${state.todayWeather?.date ?: "N/A"}",
+                        text = "Today ${state.todayWeather.date}",
                         style = Typography.h3.copy(Black87),
                         modifier = Modifier.align(CenterVertically)
                     )
@@ -75,15 +75,16 @@ fun MainCard(state: WeatherUiState) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = "${state.todayWeather?.weatherCondition?.temperature ?: "N/A"}°",
+                        text = "${state.todayWeather.weatherDescriptions.temperature}°",
                         style = Typography.h1.copy(fontSize = 100.sp),
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
                     Text(
-                        text = state.todayWeather?.weatherDescriptions?.get(0)?.description ?: "N/A",
+                        text = state.todayWeather.weatherCondition.description,
                         style = Typography.h2.copy(Black87),
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
+
                 }
                 Spacer(modifier = Modifier.weight(1F))
                 Row(
@@ -95,15 +96,15 @@ fun MainCard(state: WeatherUiState) {
                 ) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null)
-                        Text(text = "${state.todayWeather?.weatherCondition?.pressure ?: "N/A"} hpa")
+                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa")
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null)
-                        Text(text = "${state.todayWeather?.weatherCondition?.humidity ?: "N/A"}%")
+                        Text(text = "${state.todayWeather.weatherDescriptions.humidity}%")
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.Speed, contentDescription = null)
-                        Text(text = "${state.todayWeather?.weatherCondition?.groundLevelPressure ?: "N/A"} km/h")
+                        Text(text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} km/h")
                     }
                 }
             }

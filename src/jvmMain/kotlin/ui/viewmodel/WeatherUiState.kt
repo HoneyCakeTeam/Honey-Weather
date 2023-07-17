@@ -8,52 +8,51 @@ data class WeatherUiState(
     val error: String = "",
     val isLoading: Boolean = false,
     val isError: Boolean = false,
-    val todayWeather: ForecastItemUiState? = null,
-    val todayWeatherItems: WeatherItemUiState? = null,
-    val remainWeatherItems: WeatherItemUiState? = null,
+    val todayWeather: ForecastItemUiState = ForecastItemUiState(),
+    val todayWeatherItems: WeatherItemUiState = WeatherItemUiState(),
+    val remainWeatherItems: WeatherItemUiState = WeatherItemUiState()
 )
 
 data class WeatherItemUiState(
-    val forecastItems: List<ForecastItemUiState>,
-    val city: CityUiState
+    val forecastItems: List<ForecastItemUiState> = emptyList(),
+    val city: CityUiState = CityUiState()
 )
 
 data class ForecastItemUiState(
-    val weatherCondition: WeatherDescriptionUiState,
-    val weatherDescriptions: List<WeatherConditionUiState>,
-    val visiability : Int,
-    val wind: WindUiState,
-    val date: String,
-    val time: String
-
+    val weatherDescriptions: WeatherDescriptionUiState = WeatherDescriptionUiState(),
+    val weatherCondition: WeatherConditionUiState= WeatherConditionUiState(),
+    val visibility: Int = 0,
+    val wind: WindUiState = WindUiState(),
+    val date: String = "",
+    val time: String = ""
 )
 
 data class WeatherConditionUiState(
-    val mainCondition: String,
-    val description: String,
-    val icon: String
+    val mainCondition: String = "",
+    val description: String = "",
+    val icon: String = ""
 )
 
 data class WeatherDescriptionUiState(
-    val temperature: Int,
-    val minTemperature: Int,
-    val maxTemperature: Int,
-    val pressure: Int,
-    val seaLevelPressure: Int,
-    val humidity: Int,
-    val groundLevelPressure: Int
+    val temperature: Int = 0,
+    val minTemperature: Int = 0,
+    val maxTemperature: Int = 0,
+    val pressure: Int = 0,
+    val seaLevelPressure: Int = 0,
+    val humidity: Int = 0,
+    val groundLevelPressure: Int = 0
 )
 
 data class CityUiState(
-    val name: String,
-    val sunriseTime: Long,
-    val sunsetTime: Long
+    val name: String = "",
+    val sunriseTime: Long = 0L,
+    val sunsetTime: Long = 0L
 )
 
 data class WindUiState(
-    val speed: Double,
-    val deg: Int,
-    val gust: Double
+    val speed: Double = 0.0,
+    val deg: Int = 0,
+    val gust: Double = 0.0
 )
 
 fun WeatherEntity.toUiState(): WeatherItemUiState {
@@ -65,9 +64,9 @@ fun WeatherEntity.toUiState(): WeatherItemUiState {
 
 fun ForecastItemEntity.toForecastItemUiState(): ForecastItemUiState {
     return ForecastItemUiState(
-        weatherCondition = weatherDescription.toWeatherDescriptionUiState(),
-        weatherDescriptions = weather.map { it.toWeatherConditionUiState() },
-        visiability = visibility,
+        weatherDescriptions = weatherDescription.toWeatherDescriptionUiState(),
+        weatherCondition = weather.first().toWeatherConditionUiState(),
+        visibility = visibility,
         wind = wind.toWindUiState(),
         date = convertToUserFriendlyDate(dateTime),
         time = convertToTimeFormat(dateTime)
