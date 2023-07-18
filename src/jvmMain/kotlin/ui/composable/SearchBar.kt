@@ -10,6 +10,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.sp
 import ui.theme.DarkBlue
+import ui.theme.Whit37
 
 @Composable
 fun SearchBar(
@@ -26,7 +27,7 @@ fun SearchBar(
         },
         textStyle = TextStyle.Default.copy(fontSize = 16.sp),
         label = { Text(text = "Search", color = Color.White) },
-        placeholder = { Text(text = "Search something here...") },
+        placeholder = { Text(text = "Search something here...", color = Whit37) },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = Color.Transparent,
             focusedBorderColor = Color.LightGray,
