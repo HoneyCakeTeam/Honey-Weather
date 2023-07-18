@@ -1,8 +1,7 @@
 package ui.viewmodel
 
 import domain.entity.WeatherEntity
-import domain.usecase.GetRemainWeatherItemsUseCase
-import domain.usecase.GetTodayWeatherItemsUseCase
+import domain.usecase.GetWeatherDataUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,8 +11,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
 class WeatherViewModel(
-    private val getTodayWeatherItems: GetTodayWeatherItemsUseCase,
-    private val getRemainWeatherItems: GetRemainWeatherItemsUseCase
+    private val getWeatherItems: GetWeatherDataUseCase,
 ): KoinComponent {
     private val _weatherUiState = MutableStateFlow(WeatherUiState())
     val weatherUiState = _weatherUiState.asStateFlow()
@@ -25,9 +23,8 @@ class WeatherViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 _weatherUiState.update { it.copy(isLoading = true) }
-                val todayWeatherData = getTodayWeatherItems("29.30995","30.8418")
-                val restOfWeakWeatherData = getRemainWeatherItems("29.30995","30.8418")
-                onGetWeatherSuccess(todayWeatherData, restOfWeakWeatherData)
+                val weatherData = getWeatherItems("29.30995","30.8418")
+                onGetWeatherSuccess(weatherData.todayWeather, weatherData.remainWeather)
             } catch (e: Exception) {
                 onGetWeatherError(e.message)
             } finally {

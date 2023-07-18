@@ -7,8 +7,7 @@ fun WeatherDto.toEntity(): WeatherEntity {
     val forecastItems = list?.map { it.toForecastItemEntity() }
     val city = city?.toEntity() ?: throw IllegalStateException("City information is missing.")
     return WeatherEntity(
-        forecastItems = forecastItems ?: emptyList(),
-        city = city
+        forecastItems = forecastItems ?: emptyList(), city = city
     )
 }
 
@@ -48,17 +47,12 @@ fun Weather.toWeatherEntity(): WeatherConditionEntity {
 
 fun WindDto.toWindEntity(): WindEntity {
     return WindEntity(
-        speed = speed ?: 0.0,
-        deg = deg ?: 0,
-        gust = gust ?: 0.0
+        speed = speed ?: 0.0, deg = deg ?: 0, gust = gust ?: 0.0
     )
 }
 
 fun CityDto.toEntity(): CityEntity {
     return CityEntity(
-        name = name ?: "unknown",
-        timezone = timezone ?: 0,
-        sunrise = sunrise ?: 0L,
-        sunset = sunset ?: 0L
+        name = name ?: "unknown", timezone = timezone ?: 0, sunrise = sunrise ?: 0L, sunset = sunset ?: 0L
     )
 }
