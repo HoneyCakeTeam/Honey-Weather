@@ -1,4 +1,5 @@
-import androidx.compose.ui.res.painterResource
+package ui.utils
+
 
 fun getWeatherIconResource(icon: String): String {
     return when (icon) {

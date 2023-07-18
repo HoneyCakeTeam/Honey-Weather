@@ -1,8 +1,8 @@
 package ui.viewmodel
 
 import domain.entity.*
-import util.convertToTimeFormat
-import util.convertToUserFriendlyDate
+import ui.utils.convertToTimeFormat
+import ui.utils.convertToUserFriendlyDate
 
 data class WeatherUiState(
     val error: String = "",
