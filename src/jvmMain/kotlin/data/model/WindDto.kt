@@ -1,10 +1,14 @@
 package data.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class WindDto(
-    val speed: Double,
-    val deg: Int,
-    val gust: Double
+    @SerializedName("speed")
+    val speed: Double? = null,
+    @SerializedName("deg")
+    val deg: Int? = null,
+    @SerializedName("gust")
+    val gust: Double? = null
 )

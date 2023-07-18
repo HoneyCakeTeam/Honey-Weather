@@ -1,8 +1,10 @@
 package data.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class SysDto(
-    val pod: String
+    @SerializedName("pod")
+    val pod: String? = null
 )

@@ -25,8 +25,8 @@ class WeatherViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 _weatherUiState.update { it.copy(isLoading = true) }
-                val todayWeatherData = getTodayWeatherItems("30.016894","31.377034")
-                val restOfWeakWeatherData = getRemainWeatherItems("30.016894","31.377034")
+                val todayWeatherData = getTodayWeatherItems("29.30995","30.8418")
+                val restOfWeakWeatherData = getRemainWeatherItems("29.30995","30.8418")
                 onGetWeatherSuccess(todayWeatherData, restOfWeakWeatherData)
             } catch (e: Exception) {
                 onGetWeatherError(e.message)
