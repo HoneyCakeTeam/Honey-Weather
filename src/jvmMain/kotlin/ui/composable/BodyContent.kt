@@ -25,7 +25,7 @@ fun BodyContent(
     ) {
         SearchBar(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(16.dp))
-        MainCard()
+        MainCard(state)
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Today Highlights", style = Typography.h1)
         Spacer(modifier = Modifier.height(16.dp))
@@ -33,18 +33,45 @@ fun BodyContent(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            repeat(3) {
-                TodayHighlightsCard(modifier = Modifier.weight(1F))
-            }
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
+                "Wind",
+                "Today Wind Speed",
+                "${state.todayWeather.wind.speed} km/h"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Max & Min Temp",
+                "Max : ${state.todayWeather.weatherDescriptions.maxTemperature}",
+                "Min : ${state.todayWeather.weatherDescriptions.minTemperature}"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "SunRise & SunSet",
+                "SunRise : ${state.todayWeatherItems.city.sunriseTime}",
+                "SunSet : ${state.todayWeatherItems.city.sunsetTime}"
+            )
+
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            repeat(3) {
-                TodayHighlightsCard(modifier = Modifier.weight(1F))
-            }
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Pressure",
+                "Today Pressure",
+                "${state.todayWeather.weatherDescriptions.pressure} hpa"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Humidity",
+                "Today Humidaty",
+                "${state.todayWeather.weatherDescriptions.humidity} %"
+            )
+            TodayHighlightsCard(modifier = Modifier.weight(1F),
+                "Visibility",
+                "Today Visibility",
+                "${state.todayWeather.visibility}"
+            )
+
         }
     }
 }

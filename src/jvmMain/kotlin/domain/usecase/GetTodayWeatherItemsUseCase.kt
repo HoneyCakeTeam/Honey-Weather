@@ -1,21 +1,18 @@
 package domain.usecase
 
-import data.model.WeatherDto
 import data.repository.WeatherRepo
+import domain.entity.WeatherEntity
+import util.filterWeatherItems
+import util.getForecastDate
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class GetTodayWeatherItemsUseCase(private val repo: WeatherRepo) {
-    suspend operator fun invoke(lat: String, lon: String): WeatherDto {
+    suspend operator fun invoke(lat: String, lon: String): WeatherEntity {
         val forecastData = repo.fetchData(lat, lon)
-        val today = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        val filteredItems = forecastData.list.filter { forecastItem ->
-            val forecastDateTime = LocalDateTime.parse(forecastItem.dt_txt, formatter)
-            val forecastDate = forecastDateTime.toLocalDate()
-            forecastDate == today
+        val filteredItems = forecastData.filterWeatherItems { forecastItem ->
+            val forecastDate = forecastItem.getForecastDate()
+            forecastDate == LocalDate.now()
         }
-        return forecastData.copy(list = filteredItems)
+        return forecastData.copy(forecastItems = filteredItems)
     }
 }
