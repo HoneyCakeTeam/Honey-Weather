@@ -13,7 +13,7 @@ fun WeaklyWeatherContent(){
     Column(modifier = Modifier) {
        // WeekHeader()
         //Spacer(modifier = Modifier.height(8.dp))
-        TodayHourlyWeather()
+        //TodayHourlyWeather()
         //Spacer(modifier = Modifier.height(8.dp))
         //WeaklyWeatherRecycle()
     }

@@ -1,7 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
-val ktor_version: String by project
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose") version "1.4.1"
@@ -20,6 +18,7 @@ repositories {
     }
 }
 
+
 kotlin {
     jvm {
         jvmToolchain(11)
@@ -31,23 +30,21 @@ kotlin {
                 implementation(compose.desktop.currentOs)
 
                 // Integration with Ktor
-                implementation("io.ktor:ktor-client-core:$ktor_version")
-                implementation("io.ktor:ktor-client-cio:$ktor_version")
-                implementation("io.ktor:ktor-client-serialization:$ktor_version")
-                implementation("io.ktor:ktor-client-logging:$ktor_version")
+                implementation("io.ktor:ktor-server-core:1.6.3")
+                implementation("io.ktor:ktor-server-netty:1.6.3")
+                implementation("io.ktor:ktor-client-core:1.6.3")
+                implementation("io.ktor:ktor-client-cio:1.6.3")
+                implementation("io.ktor:ktor-client-serialization:1.6.3")
+                implementation("io.ktor:ktor-client-logging:1.6.3")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
                 implementation("com.google.code.gson:gson:2.8.8")
-                implementation("io.ktor:ktor-client-gson:$ktor_version")
+                implementation("io.ktor:ktor-client-gson:1.6.3")
 
-                //Integration with Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
-                //Integration with Koin for Ktor
-                val koinKtor = "3.4.1"
-                implementation("io.insert-koin:koin-ktor:$koinKtor")
-                implementation("io.insert-koin:koin-logger-slf4j:$koinKtor")
+                implementation("io.insert-koin:koin-core:3.4.2")
 
-                //Integration with Compose icons
+
                 implementation("org.jetbrains.compose.material:material-icons-extended-desktop:1.4.1")
             }
         }

@@ -15,33 +15,32 @@ import di.appModules
 import org.koin.core.context.startKoin
 
 
-fun main() = application {
-    val windowState = rememberWindowState()
-    var isOpen by remember { mutableStateOf(true) }
-    var isAskingToClose by remember { mutableStateOf(false) }
-
+fun main() {
     startKoin {
         modules(appModules)
     }
-    /*install(Koin) {
-        slf4jLogger()
-        modules(appModules)
-    }*/
 
-    if (isOpen) {
-        Window(
-            onCloseRequest = { isAskingToClose = true },
-            state = windowState,
-            title = "Honey Weather"
-        ) {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                CloseConfirmationDialog(
-                    isAskingToClose = isAskingToClose,
-                    onCloseRequest = { isAskingToClose = false },
-                    onConfirmClose = { isOpen = false }
-                )
-                MainScreen()
+    application {
+        val windowState = rememberWindowState()
+        var isOpen by remember { mutableStateOf(true) }
+        var isAskingToClose by remember { mutableStateOf(false) }
+
+        if (isOpen) {
+            Window(
+                onCloseRequest = { isAskingToClose = true },
+                state = windowState,
+                title = "Honey Weather"
+            ) {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    CloseConfirmationDialog(
+                        isAskingToClose = isAskingToClose,
+                        onCloseRequest = { isAskingToClose = false },
+                        onConfirmClose = { isOpen = false }
+                    )
+                    MainScreen()
+                }
             }
         }
     }
 }
+

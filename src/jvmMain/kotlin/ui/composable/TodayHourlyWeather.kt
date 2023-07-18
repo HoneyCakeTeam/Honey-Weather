@@ -17,19 +17,22 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ui.theme.Typography
+import ui.viewmodel.ForecastItemUiState
 
 @Composable
-fun TodayHourlyWeather() {
-
-    Text(text = "Today", style = Typography.h3, modifier = Modifier.padding(horizontal = 32.dp))
+fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
+    Text(
+        text = "Today",
+        style = Typography.h3,
+        modifier = Modifier.padding(horizontal = 32.dp)
+    )
     Spacer(modifier = Modifier.height(16.dp))
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
-        items(12) { position ->
-
+        items(todayWeatherItems) { forecastItem ->
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -47,11 +50,14 @@ fun TodayHourlyWeather() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Text(text = "Now", style = Typography.body2)
+                    Text(
+                        text = forecastItem.time,
+                        style = Typography.body2,
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource("image/smiling_face.png"),
+                        painter = painterResource(getWeatherIconResource(forecastItem.weatherCondition.icon)),
                         contentDescription = "weather pic",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -60,13 +66,12 @@ fun TodayHourlyWeather() {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(text = "24", style = Typography.body1)
-
+                    Text(
+                        text = "${forecastItem.weatherDescriptions.temperature}°",
+                        style = Typography.body1
+                    )
                 }
             }
-
-
         }
     }
-
 }

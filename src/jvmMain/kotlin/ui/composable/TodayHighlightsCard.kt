@@ -11,11 +11,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ui.theme.CardBackgroundColor
 import ui.theme.Typography
+import ui.viewmodel.CityUiState
+import ui.viewmodel.WeatherUiState
 
 
 @Composable
 fun TodayHighlightsCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    header: String,
+    subheader: String,
+    value: String
 ) {
     Box(
         modifier = modifier
@@ -33,9 +38,9 @@ fun TodayHighlightsCard(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceAround
         ) {
-            Text(text = "Rain Chance", style = Typography.h2)
-            Text(text = "Today Rain Chance", style = Typography.caption)
-            Text(text = "24%", style = Typography.h2)
+            Text(text = header, style = Typography.h2)
+            Text(text = subheader, style = Typography.caption)
+            Text(text = value, style = Typography.h2)
         }
     }
 }

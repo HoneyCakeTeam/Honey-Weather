@@ -17,12 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ui.theme.Whit87
 import ui.theme.Typography
+import ui.viewmodel.WeatherUiState
 
 @Composable
-fun MainCard() {
-
+fun MainCard(state: WeatherUiState) {
+    Card(
+        modifier = Modifier.height(400.dp).fillMaxWidth().clip(RoundedCornerShape(16.dp)),
+        elevation = 0.dp
+    ) {
         Box {
 
             Column() {
@@ -54,12 +57,60 @@ fun MainCard() {
                             tint = Color.White
                         )
                         Text(
-                            text = "Gotham",
+                            text = state.todayWeatherItems.city.name,
                             style = Typography.h2,
                             color = Color.White
                         )
                     }
+                    Text(
+                        text = "Today ${state.todayWeather.date}",
+                        style = Typography.h3.copy(Black87),
+                        modifier = Modifier.align(CenterVertically)
+                    )
                 }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "${state.todayWeather.weatherDescriptions.temperature}°",
+                        style = Typography.h1.copy(fontSize = 100.sp),
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                    Text(
+                        text = state.todayWeather.weatherCondition.description,
+                        style = Typography.h2.copy(Black87),
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+
+                }
+                Spacer(modifier = Modifier.weight(1F))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null)
+                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa")
+                    }
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null)
+                        Text(text = "${state.todayWeather.weatherDescriptions.humidity}%")
+                    }
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null)
+                        Text(text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} km/h")
+                    }
+                }
+            }
+        }
+    }
+}
+
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Row(
                         modifier = Modifier

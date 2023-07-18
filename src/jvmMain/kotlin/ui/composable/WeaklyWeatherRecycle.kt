@@ -15,17 +15,21 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ui.utils.getWeatherIconResource
 import ui.theme.*
+import ui.viewmodel.ForecastItemUiState
 
 
 @Composable
-fun WeaklyWeatherRecycle()  {
+fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
-    ){
-        items (20){ position ->
+    ) {
+        items(remainWeatherItems.size) { position ->
+
+            val forecastItem = remainWeatherItems[position]
 
             Box(
                 modifier = Modifier
@@ -48,25 +52,28 @@ fun WeaklyWeatherRecycle()  {
                     Column() {
                         Text(text = "Tomorrow", style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "12 Apr", style = Typography.body2)
+                        Text(
+                            text = forecastItem.time,
+                            style = Typography.body2
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(text = "16", style = Typography.h2)
+                    Text(
+                        text = "${forecastItem.weatherDescriptions.temperature}°",
+                        style = Typography.h2
+                    )
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
-                        painter = painterResource("image/smiling_face.png"),
+                        painter = painterResource(getWeatherIconResource(forecastItem.weatherCondition.icon)),
                         contentDescription = "weather pic",
                         modifier = Modifier
                             .size(32.dp)
                     )
-
                 }
             }
-
-
         }
     }
 }

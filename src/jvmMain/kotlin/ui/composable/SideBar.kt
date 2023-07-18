@@ -12,11 +12,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ui.theme.BackgroundColor
 import ui.theme.DarkBlue
+import ui.viewmodel.WeatherUiState
 
 @Composable
-fun SideBar() {
-
-
+fun SideBar(state: WeatherUiState) {
     Column(
         modifier = Modifier
             .fillMaxHeight()
@@ -28,10 +27,8 @@ fun SideBar() {
         Spacer(modifier = Modifier.height(24.dp))
         WeekHeader()
         Spacer(modifier = Modifier.height(24.dp))
-        TodayHourlyWeather()
+        TodayHourlyWeather(state.todayWeatherItems.forecastItems)
         Spacer(modifier = Modifier.height(8.dp))
-        WeaklyWeatherRecycle()
+        WeaklyWeatherRecycle(state.remainWeatherItems.forecastItems)
     }
-
-
 }
