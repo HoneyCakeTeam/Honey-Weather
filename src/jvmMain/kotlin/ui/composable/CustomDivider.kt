@@ -1,5 +1,6 @@
 package ui.composable
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
@@ -13,6 +14,7 @@ fun CustomDivider() {
     Divider(
         modifier = Modifier
             .fillMaxHeight()
-            .width(1.dp)
+            .width(1.dp),
+        color = Color.LightGray
     )
 }
