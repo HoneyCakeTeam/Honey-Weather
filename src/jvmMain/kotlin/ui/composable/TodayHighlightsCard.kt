@@ -1,11 +1,13 @@
 package ui.composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ui.theme.CardBackgroundColor
 import ui.theme.Typography
@@ -19,7 +21,12 @@ fun TodayHighlightsCard(
         modifier = modifier
             .fillMaxWidth()
             .height(128.dp)
-            .background(color = CardBackgroundColor, shape = RoundedCornerShape(16.dp))
+            .background(color = Color.Transparent, shape = RoundedCornerShape(16.dp))
+            .border(
+                width = 1.dp,
+                color =  Color.LightGray,
+                shape = RoundedCornerShape(16.dp)
+            )
             .padding(all = 16.dp)
     ) {
         Column(

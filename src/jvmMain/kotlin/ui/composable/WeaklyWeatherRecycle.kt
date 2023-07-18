@@ -2,6 +2,7 @@ package ui.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -28,7 +30,12 @@ fun WeaklyWeatherRecycle()  {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(color = CardBackgroundColor, shape = RoundedCornerShape(16.dp))
+                    .background(color = Color.Transparent, shape = RoundedCornerShape(16.dp))
+                    .border(
+                        width = 1.dp,
+                        color =  Color.LightGray,
+                        shape = RoundedCornerShape(16.dp)
+                    )
                     .padding(all = 8.dp)
             ) {
 
@@ -41,7 +48,7 @@ fun WeaklyWeatherRecycle()  {
                     Column() {
                         Text(text = "Tomorrow", style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "12 Apr", color = Black37, fontSize = 14.sp)
+                        Text(text = "12 Apr", color = Color.White, fontSize = 14.sp)
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))

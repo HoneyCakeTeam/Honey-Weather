@@ -20,7 +20,6 @@ fun BodyContent(
         modifier = Modifier
             .fillMaxHeight()
             .padding(16.dp)
-            .background(BackgroundColor)
             .verticalScroll(rememberScrollState())
     ) {
         SearchBar(modifier = Modifier.fillMaxWidth())

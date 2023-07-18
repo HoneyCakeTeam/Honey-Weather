@@ -20,19 +20,19 @@ fun SearchBar(
     OutlinedTextField(
         modifier = modifier,
         value = searchText,
-        leadingIcon = { Icon(imageVector = Icons.Outlined.Search, contentDescription = "Search Icon") },
+        leadingIcon = { Icon(imageVector = Icons.Outlined.Search, contentDescription = "Search Icon", tint = Color.White) },
         onValueChange = {
             searchText = it
         },
         textStyle = TextStyle.Default.copy(fontSize = 16.sp),
-        label = { Text(text = "Search") },
+        label = { Text(text = "Search", color = Color.White) },
         placeholder = { Text(text = "Search something here...") },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = Color.Transparent,
-            focusedBorderColor = DarkBlue,
-            focusedLabelColor = DarkBlue,
-            cursorColor = DarkBlue,
-            leadingIconColor = DarkBlue
+            focusedBorderColor = Color.LightGray,
+            focusedLabelColor = Color.LightGray,
+            cursorColor = Color.LightGray,
+            leadingIconColor = Color.LightGray
         ),
         maxLines = 1,
         singleLine = true,

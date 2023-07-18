@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,14 +33,16 @@ fun WeekHeader() {
             imageVector = Icons.Outlined.ArrowLeft,
             contentDescription = null,
             modifier = Modifier.size(ButtonDefaults.IconSize),
+            tint = White
         )
 
-        Text(text = "This Week", color = Black87, style = Typography.h2.copy(fontSize = 20.sp))
+        Text(text = "This Week", color = White, style = Typography.h2.copy(fontSize = 20.sp))
 
         Icon(
             imageVector = Icons.Outlined.ArrowRight,
             contentDescription = null,
             modifier = Modifier.size(ButtonDefaults.IconSize),
+            tint = White
         )
     }
 }
