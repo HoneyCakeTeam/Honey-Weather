@@ -48,7 +48,7 @@ fun WeaklyWeatherRecycle()  {
                     Column() {
                         Text(text = "Tomorrow", style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text(text = "12 Apr", color = Color.White, fontSize = 14.sp)
+                        Text(text = "12 Apr", style = Typography.body2)
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))

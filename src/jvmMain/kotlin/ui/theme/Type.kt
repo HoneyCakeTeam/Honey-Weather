@@ -11,36 +11,36 @@ val Typography = Typography(
         fontFamily = Robot,
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp,
-        color = Color.White
+        color = Whit87
     ),
     h2 = TextStyle(
         fontFamily = Robot,
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
-        color = Color.White
+        color = Whit87
     ),
     h3 = TextStyle(
         fontFamily = Robot,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
-        color = Color.White,
+        color = Whit87,
     ),
     body1 = TextStyle(
         fontFamily = Robot,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
-        color = Color.White
+        color = Whit60
     ),
     body2 = TextStyle(
         fontFamily = Robot,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
-        color = Color.White
+        color = Whit60
     ),
     caption = TextStyle(
         fontFamily = Robot,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = Color.White
+        color = Whit60
     ),
 )

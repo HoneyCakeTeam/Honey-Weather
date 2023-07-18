@@ -47,7 +47,7 @@ fun TodayHourlyWeather() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Text(text = "Now", style = Typography.body2, color = Color.White)
+                    Text(text = "Now", style = Typography.body2)
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Image(
@@ -60,7 +60,7 @@ fun TodayHourlyWeather() {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    Text(text = "24", style = Typography.body1.copy(color = Color.White))
+                    Text(text = "24", style = Typography.body1)
 
                 }
             }
