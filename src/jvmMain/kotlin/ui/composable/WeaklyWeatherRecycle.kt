@@ -34,7 +34,8 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
         contentPadding = PaddingValues(horizontal = 16.dp),
     ) {
         items(remainWeatherItems.size) { position ->
-            val forecastItem = remainWeatherItems[position]
+            val forecastWeaklyRecycle = remainWeatherItems.filter { it.date != formatDate() }.distinctBy { it.date }
+            val forecastItem = forecastWeaklyRecycle[position]
 
             Box(
                 modifier = Modifier
