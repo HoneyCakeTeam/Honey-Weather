@@ -8,7 +8,7 @@ data class WindDto(
     @SerializedName("speed")
     val speed: Double? = null,
     @SerializedName("deg")
-    val deg: Int? = null,
+    val degree: Int? = null,
     @SerializedName("gust")
     val gust: Double? = null
 )

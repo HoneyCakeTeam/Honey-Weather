@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-class LocationManager {
+object LocationManager {
     suspend fun getLocation(): Location {
         return withContext(Dispatchers.IO) {
             val url = URL("https://ipinfo.io/json")
@@ -16,4 +16,14 @@ class LocationManager {
         }
     }
 }
-data class Location(val loc: String)
+
+data class Location(val loc: String) {
+    val latitude: Double
+    val longitude: Double
+
+    init {
+        val (lat, lng) = loc.split(",")
+        latitude = lat.toDoubleOrNull() ?: 0.0
+        longitude = lng.toDoubleOrNull() ?: 0.0
+    }
+}

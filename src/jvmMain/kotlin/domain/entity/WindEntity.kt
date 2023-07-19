@@ -2,6 +2,6 @@ package domain.entity
 
 data class WindEntity (
     val speed: Double,
-    val deg: Int,
+    val degree: Int,
     val gust: Double
 )

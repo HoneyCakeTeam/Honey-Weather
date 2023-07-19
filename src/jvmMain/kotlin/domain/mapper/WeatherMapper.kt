@@ -4,7 +4,7 @@ import data.model.*
 import domain.entity.*
 
 fun WeatherDto.toEntity(): WeatherEntity {
-    val forecastItems = list?.map { it.toForecastItemEntity() }
+    val forecastItems = forecastItems?.map { it.toForecastItemEntity() }
     val city = city?.toEntity() ?: throw IllegalStateException("City information is missing.")
     return WeatherEntity(
         forecastItems = forecastItems ?: emptyList(), city = city
@@ -21,19 +21,19 @@ fun ForecastItemDto.toForecastItemEntity(): ForecastItemEntity {
         weather = weatherEntities ?: emptyList(),
         visibility = visibility ?: 0,
         wind = windEntity,
-        dateTime = dt_txt ?: "Empty Date"
+        dateTime = textDate ?: "Empty Date"
     )
 }
 
 fun MainDto.toWeatherDescriptionEntity(): WeatherDescriptionEntity {
     return WeatherDescriptionEntity(
         temperature = temp ?: 0.0,
-        minTemperature = temp_min ?: 0.0,
-        maxTemperature = temp_max ?: 0.0,
+        minTemperature = minimumTemp ?: 0.0,
+        maxTemperature = maximumTemp ?: 0.0,
         pressure = pressure ?: 0,
-        seaLevelPressure = sea_level ?: 0,
+        seaLevelPressure = seaLevel ?: 0,
         humidity = humidity ?: 0,
-        groundLevelPressure = grnd_level ?: 0
+        groundLevelPressure = groundLlevel ?: 0
     )
 }
 
@@ -47,7 +47,7 @@ fun Weather.toWeatherEntity(): WeatherConditionEntity {
 
 fun WindDto.toWindEntity(): WindEntity {
     return WindEntity(
-        speed = speed ?: 0.0, deg = deg ?: 0, gust = gust ?: 0.0
+        speed = speed ?: 0.0, degree = degree ?: 0, gust = gust ?: 0.0
     )
 }
 

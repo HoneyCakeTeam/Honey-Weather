@@ -9,21 +9,25 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
+import ui.utils.LocationManager
 
 class WeatherViewModel(
     private val getWeatherItems: GetWeatherDataUseCase,
-): KoinComponent {
+) : KoinComponent {
     private val _weatherUiState = MutableStateFlow(WeatherUiState())
     val weatherUiState = _weatherUiState.asStateFlow()
+
     init {
         getWeather()
     }
+
     private fun getWeather() {
         _weatherUiState.update { it.copy(isLoading = true) }
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                _weatherUiState.update { it.copy(isLoading = true) }
-                val weatherData = getWeatherItems("29.30995","30.8418")
+                val location = LocationManager.getLocation()
+                val weatherData = getWeatherItems("${location.latitude}", "${location.longitude}")
+
                 onGetWeatherSuccess(weatherData.todayWeather, weatherData.remainWeather)
             } catch (e: Exception) {
                 onGetWeatherError(e.message)
@@ -38,7 +42,7 @@ class WeatherViewModel(
             it.copy(
                 todayWeatherItems = todayWeatherData.toUiState(),
                 remainWeatherItems = restOfWeakWeatherData.toUiState(),
-                todayWeather = todayWeatherData.forecastItems[0].toForecastItemUiState(),
+                todayWeather = todayWeatherData.forecastItems.first().toForecastItemUiState(),
             )
         }
     }

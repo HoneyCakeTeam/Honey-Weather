@@ -11,7 +11,7 @@ data class CityDto(
     @SerializedName("name")
     val name: String? = null,
     @SerializedName("coord")
-    val coord: CoordDto? = null,
+    val coordinates: CoordinatesDto? = null,
     @SerializedName("country")
     val country: String? = null,
     @SerializedName("population")

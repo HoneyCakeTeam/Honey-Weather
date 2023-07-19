@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WeatherDto(
     @SerializedName("cod")
-    val cod: String? = null,
+    val code: String? = null,
     @SerializedName("message")
     val message: Int? = null,
     @SerializedName("cnt")
     val cnt: Int? = null,
     @SerializedName("list")
-    val list: List<ForecastItemDto>? = null,
+    val forecastItems: List<ForecastItemDto>? = null,
     @SerializedName("city")
     val city: CityDto? = null
 )

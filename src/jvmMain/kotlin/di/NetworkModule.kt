@@ -1,6 +1,6 @@
 package di
 
-import WeatherService
+import data.source.WeatherService
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
@@ -23,7 +23,7 @@ private fun httpClient(): HttpClient {
             serializer = GsonSerializer()
         }
         install(Logging) {
-            level = LogLevel.ALL
+            level = LogLevel.BODY
         }
         defaultRequest {
             url(BASE_URL)

@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ForecastItemDto(
     @SerializedName("dt")
-    val dt: Long? = null,
+    val date: Long? = null,
     @SerializedName("main")
     val main: MainDto? = null,
     @SerializedName("weather")
@@ -22,5 +22,5 @@ data class ForecastItemDto(
     @SerializedName("sys")
     val sys: SysDto? = null,
     @SerializedName("dt_txt")
-    val dt_txt: String? = null
+    val textDate: String? = null
 )

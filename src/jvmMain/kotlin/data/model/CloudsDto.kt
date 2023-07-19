@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CloudsDto(
     @SerializedName("all")
-    val all: Int? = null
+    val allClouds: Int? = null
 )

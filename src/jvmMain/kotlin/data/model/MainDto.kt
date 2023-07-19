@@ -8,17 +8,17 @@ data class MainDto(
     @SerializedName("temp")
     val temp: Double? = null,
     @SerializedName("feels_like")
-    val feels_like: Double? = null,
+    val feelsLike: Double? = null,
     @SerializedName("temp_min")
-    val temp_min: Double? = null,
+    val minimumTemp: Double? = null,
     @SerializedName("temp_max")
-    val temp_max: Double? = null,
+    val maximumTemp: Double? = null,
     @SerializedName("pressure")
     val pressure: Int? = null,
     @SerializedName("sea_level")
-    val sea_level: Int? = null,
+    val seaLevel: Int? = null,
     @SerializedName("grnd_level")
-    val grnd_level: Int? = null,
+    val groundLlevel: Int? = null,
     @SerializedName("humidity")
     val humidity: Int? = null,
     @SerializedName("temp_kf")

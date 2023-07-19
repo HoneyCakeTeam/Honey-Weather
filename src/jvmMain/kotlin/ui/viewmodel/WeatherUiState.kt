@@ -104,7 +104,7 @@ fun CityEntity.toCityUiState(): CityUiState {
 fun WindEntity.toWindUiState(): WindUiState {
     return WindUiState(
         speed = speed,
-        deg = deg,
+        deg = degree,
         gust = gust
     )
 }
