@@ -3,7 +3,7 @@ package ui.utils
 
 fun getWeatherIconResource(icon: String): String {
     return when (icon) {
-        "01d" -> "image/01d.png"
+        "01d" -> "image/sun_icon.jpg"
         "01n" -> "image/01n.png"
         "02d" -> "image/02d.png"
         "02n" -> "image/02n.png"
@@ -21,6 +21,6 @@ fun getWeatherIconResource(icon: String): String {
         "13n" -> "image/13n.png"
         "50d" -> "image/50d.png"
         "50n" -> "image/50n.png"
-        else -> "image/smiling_face.png.png"
+        else -> "image/smiling_face.png"
     }
 }

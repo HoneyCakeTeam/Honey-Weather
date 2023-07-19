@@ -23,7 +23,8 @@ fun BodyContent(
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         MainCard(state)
-        Spacer(modifier = Modifier.weight(1f))
+        //Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(64.dp))
         Text(text = "Today Highlights", style = Typography.h1)
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -66,7 +67,7 @@ fun BodyContent(
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
-                "${state.todayWeather.visibility}"
+                "${state.todayWeather.visibility} meters"
             )
 
         }
