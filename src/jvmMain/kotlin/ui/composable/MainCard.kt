@@ -18,124 +18,72 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ui.theme.Typography
+import ui.theme.Whit87
 import ui.viewmodel.WeatherUiState
 
 @Composable
 fun MainCard(state: WeatherUiState) {
-    Card(
-        modifier = Modifier.height(400.dp).fillMaxWidth().clip(RoundedCornerShape(16.dp)),
-        elevation = 0.dp
-    ) {
-        Box {
 
-            Column() {
-
-                Column(
-                    verticalArrangement = Arrangement.Bottom,
-                    modifier = Modifier.fillMaxWidth().background(Color.Transparent).padding(start = 32.dp)
+    Box {
+        Column {
+            Column(
+                verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier.fillMaxWidth().background(Color.Transparent).padding(start = 32.dp)
+            ) {
+                Text(
+                    text = "${state.todayWeather.weatherDescriptions.temperature}°",
+                    style = Typography.h1.copy(fontSize = 100.sp),
+                    modifier = Modifier.padding(top = 100.dp),
+                    color = Color.White
+                )
+                Text(
+                    text = "Today ${state.todayWeather.date}",
+                    style = Typography.h3.copy(Whit87),
+                    modifier = Modifier.padding(),
+                    color = Color.White
+                )
+                Row(
+                    verticalAlignment = CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.padding(vertical = 8.dp)
                 ) {
+                    Icon(
+                        imageVector = Icons.Outlined.LocationOn,
+                        contentDescription = "Location Icon",
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
+                        tint = Color.White
+                    )
                     Text(
-                        text = "12°", style = Typography.h1.copy(fontSize = 100.sp),
-                        modifier = Modifier.padding(top = 100.dp),
+                        text = state.todayWeatherItems.city.name,
+                        style = Typography.h2,
                         color = Color.White
                     )
-                    Text(
-                        text = "Today 00:32 PM",
-                        style = Typography.h3.copy(Whit87),
-                        modifier = Modifier.padding(),
-                        color = Color.White
-                    )
-                    Row(
-                        verticalAlignment = CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.LocationOn,
-                            contentDescription = "content description",
-                            modifier = Modifier.size(ButtonDefaults.IconSize),
-                            tint = Color.White
-                        )
-                        Text(
-                            text = state.todayWeatherItems.city.name,
-                            style = Typography.h2,
-                            color = Color.White
-                        )
-                    }
-                    Text(
-                        text = "Today ${state.todayWeather.date}",
-                        style = Typography.h3.copy(Black87),
-                        modifier = Modifier.align(CenterVertically)
-                    )
                 }
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = "${state.todayWeather.weatherDescriptions.temperature}°",
-                        style = Typography.h1.copy(fontSize = 100.sp),
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
-                    )
-                    Text(
-                        text = state.todayWeather.weatherCondition.description,
-                        style = Typography.h2.copy(Black87),
-                        modifier = Modifier.align(Alignment.CenterHorizontally)
-                    )
-
-                }
-                Spacer(modifier = Modifier.weight(1F))
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.spacedBy(32.dp),
                     verticalAlignment = CenterVertically
                 ) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null)
-                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa")
+                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null, tint = Color.White)
+                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa", color = Color.White)
                     }
+                    Text(text = "|", color = Color.White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null)
-                        Text(text = "${state.todayWeather.weatherDescriptions.humidity}%")
+                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null, tint = Color.White)
+                        Text(text = "${state.todayWeather.weatherDescriptions.humidity}%", color = Color.White)
                     }
+                    Text(text = "|", color = Color.White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null)
-                        Text(text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} km/h")
+                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = Color.White)
+                        Text(text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} km/h", color = Color.White)
                     }
                 }
             }
         }
     }
 }
-
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(32.dp),
-                        verticalAlignment = CenterVertically
-                    ) {
-                        Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null, tint = Color.White)
-                            Text(text = "728hpa", color = Color.White)
-                        }
-                        Text(text = "|", color = Color.White)
-                        Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null, tint = Color.White)
-                            Text(text = "32%", color = Color.White)
-                        }
-                        Text(text = "|", color = Color.White)
-                        Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = Color.White)
-                            Text(text = "12km/h", color = Color.White)
-                        }
-                    }
-                }
-
-            }
-        }
-    }

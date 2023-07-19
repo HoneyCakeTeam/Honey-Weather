@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -17,15 +18,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ui.theme.Typography
+import ui.utils.getWeatherIconResource
 import ui.viewmodel.ForecastItemUiState
 
 @Composable
 fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
-    Text(
-        text = "Today",
-        style = Typography.h3,
-        modifier = Modifier.padding(horizontal = 32.dp)
-    )
+    Text(text = "Today", style = Typography.h3, modifier = Modifier.padding(horizontal = 32.dp))
     Spacer(modifier = Modifier.height(16.dp))
 
     LazyRow(
@@ -49,23 +47,20 @@ fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Text(
                         text = forecastItem.time,
                         style = Typography.body2,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-
                     Image(
                         painter = painterResource(getWeatherIconResource(forecastItem.weatherCondition.icon)),
-                        contentDescription = "weather pic",
+                        contentDescription = "Weather Picture",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clip(CircleShape)
                             .size(24.dp)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-
                     Text(
                         text = "${forecastItem.weatherDescriptions.temperature}°",
                         style = Typography.body1
