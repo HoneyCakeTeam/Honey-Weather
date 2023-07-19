@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ui.theme.Typography
+import ui.utils.convertFromUnixToDate
 import ui.viewmodel.WeatherUiState
 
 @Composable
@@ -43,8 +44,8 @@ fun BodyContent(
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
                 "SunRise and SunSet",
-                "SunRise : ${state.todayWeatherItems.city.sunriseTime}",
-                "SunSet : ${state.todayWeatherItems.city.sunsetTime}"
+                "SunRise : ${convertFromUnixToDate(state.todayWeatherItems.city.sunriseTime)}",
+                "SunSet : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}"
             )
 
         }

@@ -18,23 +18,8 @@ fun WeekHeader() {
 
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.Center
     ) {
-
-        Icon(
-            imageVector = Icons.Outlined.ArrowLeft,
-            contentDescription = null,
-            modifier = Modifier.size(ButtonDefaults.IconSize),
-            tint = White
-        )
-
         Text(text = "This Week", color = White, style = Typography.h2.copy(fontSize = 20.sp))
-
-        Icon(
-            imageVector = Icons.Outlined.ArrowRight,
-            contentDescription = null,
-            modifier = Modifier.size(ButtonDefaults.IconSize),
-            tint = White
-        )
     }
 }
