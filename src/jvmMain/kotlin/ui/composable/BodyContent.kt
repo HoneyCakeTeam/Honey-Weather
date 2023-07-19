@@ -21,10 +21,9 @@ fun BodyContent(
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        SearchBar(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(16.dp))
         MainCard(state)
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.weight(1f))
         Text(text = "Today Highlights", style = Typography.h1)
         Spacer(modifier = Modifier.height(16.dp))
         Row(

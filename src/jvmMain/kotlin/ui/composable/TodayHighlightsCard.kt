@@ -35,8 +35,8 @@ fun TodayHighlightsCard(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceAround
         ) {
-            Text(text = header, style = Typography.h2)
-            Text(text = subHeader, style = Typography.caption)
+            Text(text = header, style = Typography.caption)
+            Text(text = subHeader, style = Typography.h2)
             Text(text = value, style = Typography.h2)
         }
     }
