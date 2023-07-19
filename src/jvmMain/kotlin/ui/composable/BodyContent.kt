@@ -72,7 +72,7 @@ fun BodyContent(
                 modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
-                "${state.todayWeather.visibility} meters"
+                "${state.todayWeather.visibility / 1000} km"
             )
         }
         Spacer(modifier = Modifier.weight(1f))

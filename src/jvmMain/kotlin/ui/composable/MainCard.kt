@@ -7,10 +7,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.LocationOn
-import androidx.compose.material.icons.outlined.Speed
-import androidx.compose.material.icons.outlined.WaterDrop
-import androidx.compose.material.icons.outlined.WindPower
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -79,8 +76,16 @@ fun MainCard(state: WeatherUiState) {
                     }
                     Text(text = "|", color = Color.White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null, tint = Color.White)
-                        Text(text = "${state.todayWeather.weatherDescriptions.humidity}%", color = Color.White)
+                        Icon(
+                            painter = painterResource("icon/sea_level.png"),
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Text(
+                            text = "${state.todayWeather.weatherDescriptions.seaLevelPressure} hpa",
+                            color = Color.White
+                        )
                     }
                     Text(text = "|", color = Color.White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
