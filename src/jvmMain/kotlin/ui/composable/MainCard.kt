@@ -92,11 +92,6 @@ fun MainCard(state: WeatherUiState) {
                     }
                 }
             }
-            val temperature = state.todayWeather.weatherDescriptions.temperature
-            val imagePath = when {
-                temperature >= 30 && !isNight() -> "image/sun_icon.jpg"
-                else -> "image/01n.png"
-            }
             Image(
                 painter = painterResource(getImageAccordingToTemperature(state)),
                 contentDescription = "Weather Picture",
@@ -112,7 +107,7 @@ val getImageAccordingToTemperature: (WeatherUiState) -> String = { state ->
 
     val imagePath = when {
         temperature >= 30 && !isNight() -> "image/sun_icon.jpg"
-        else -> "image/01n.png"
+        else -> "image/moon.png"
     }
 
     imagePath
