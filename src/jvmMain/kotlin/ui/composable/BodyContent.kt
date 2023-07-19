@@ -5,6 +5,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ui.theme.Typography
@@ -23,7 +24,6 @@ fun BodyContent(
     ) {
         Spacer(modifier = Modifier.height(16.dp))
         MainCard(state)
-        //Spacer(modifier = Modifier.weight(1f))
         Spacer(modifier = Modifier.height(64.dp))
         Text(text = "Today Highlights", style = Typography.h1)
         Spacer(modifier = Modifier.height(16.dp))
@@ -37,12 +37,14 @@ fun BodyContent(
                 "Today Wind Speed",
                 "${state.todayWeather.wind.speed} km/h"
             )
-            TodayHighlightsCard(modifier = Modifier.weight(1F),
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
                 "Max and Min Temperature",
                 "Max : ${state.todayWeather.weatherDescriptions.maxTemperature}°",
                 "Min : ${state.todayWeather.weatherDescriptions.minTemperature}°",
             )
-            TodayHighlightsCard(modifier = Modifier.weight(1F),
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
                 "SunRise and SunSet",
                 "SunRise : ${convertFromUnixToDate(state.todayWeatherItems.city.sunriseTime)}",
                 "SunSet : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}"
@@ -54,22 +56,30 @@ fun BodyContent(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            TodayHighlightsCard(modifier = Modifier.weight(1F),
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
                 "Pressure",
                 "Today Pressure",
                 "${state.todayWeather.weatherDescriptions.pressure} hpa"
             )
-            TodayHighlightsCard(modifier = Modifier.weight(1F),
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
                 "Humidity",
-                "Today Humidaty",
+                "Today Humidity",
                 "${state.todayWeather.weatherDescriptions.humidity} %"
             )
-            TodayHighlightsCard(modifier = Modifier.weight(1F),
+            TodayHighlightsCard(
+                modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
                 "${state.todayWeather.visibility} meters"
             )
-
         }
+        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            text = "Copyright @2023 The Chance - Honey Cake Team",
+            style = Typography.body2,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
     }
 }
