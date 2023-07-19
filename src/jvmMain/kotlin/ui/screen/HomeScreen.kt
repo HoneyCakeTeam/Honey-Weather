@@ -1,7 +1,10 @@
 package ui.screen
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -9,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -17,7 +21,7 @@ import ui.composable.BodyContent
 import ui.composable.CustomDivider
 import ui.composable.LoadingAnimation
 import ui.composable.SideBar
-import ui.theme.BackgroundColor
+import ui.theme.LoadingColor
 import ui.viewmodel.WeatherUiState
 import ui.viewmodel.WeatherViewModel
 
@@ -33,34 +37,35 @@ fun HomeScreen() {
 fun HomeContent(
     state: WeatherUiState
 ) {
-    if (state.isLoading) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painterResource("image/photo_2.jpg"),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize().blur(16.dp),
+            contentScale = ContentScale.Crop
+        )
+        AnimatedVisibility(
+            visible = !state.isLoading,
+            enter = fadeIn(animationSpec = tween(durationMillis = 1000)) + slideInHorizontally(),
+            exit = fadeOut(animationSpec = tween(durationMillis = 1000)) + slideOutHorizontally()
         ) {
-            LoadingAnimation()
-        }
-    } else if (state.isError) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-        }
-    } else {
-        Box(modifier = Modifier.fillMaxSize().background(color = BackgroundColor)) {
-            Image(
-                painterResource("image/photo_2.jpg"),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize().blur(16.dp),
-                contentScale = ContentScale.Crop
-            )
             Row {
                 SideBar(state)
                 CustomDivider()
                 BodyContent(state)
+            }
+        }
+        AnimatedVisibility(
+            visible = state.isLoading,
+            enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+            exit = fadeOut(animationSpec = tween(durationMillis = 500))
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                LoadingAnimation(circleColor = Color.White)
             }
         }
     }

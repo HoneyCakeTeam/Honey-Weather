@@ -10,3 +10,5 @@ val Whit37 = Color(0x5EFFFFFF)
 
 val DarkBlue = Color(0xFF233B52)
 val BabyBlue = Color(0xFFECF3F8)
+
+val LoadingColor = Color(0xFFF0D4B4)
