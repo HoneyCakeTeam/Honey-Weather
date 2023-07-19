@@ -86,7 +86,7 @@ fun MainCard(state: WeatherUiState) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = Color.White)
                         Text(
-                            text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} km/h",
+                            text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} hpa",
                             color = Color.White
                         )
                     }
