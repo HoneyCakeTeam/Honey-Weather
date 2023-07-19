@@ -1,6 +1,5 @@
 package ui.composable
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -8,7 +7,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ui.theme.BackgroundColor
 import ui.theme.Typography
 import ui.viewmodel.WeatherUiState
 
@@ -39,12 +37,12 @@ fun BodyContent(
                 "${state.todayWeather.wind.speed} km/h"
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
-                "Max & Min Temp",
-                "Max : ${state.todayWeather.weatherDescriptions.maxTemperature}",
-                "Min : ${state.todayWeather.weatherDescriptions.minTemperature}"
+                "Max and Min Temperature",
+                "Max : ${state.todayWeather.weatherDescriptions.maxTemperature}°",
+                "Min : ${state.todayWeather.weatherDescriptions.minTemperature}°",
             )
             TodayHighlightsCard(modifier = Modifier.weight(1F),
-                "SunRise & SunSet",
+                "SunRise and SunSet",
                 "SunRise : ${state.todayWeatherItems.city.sunriseTime}",
                 "SunSet : ${state.todayWeatherItems.city.sunsetTime}"
             )

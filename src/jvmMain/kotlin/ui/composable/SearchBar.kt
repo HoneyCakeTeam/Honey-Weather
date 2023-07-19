@@ -27,7 +27,7 @@ fun SearchBar(
         },
         textStyle = TextStyle.Default.copy(fontSize = 16.sp),
         label = { Text(text = "Search", color = Color.White) },
-        placeholder = { Text(text = "Search something here...", color = Whit37) },
+        placeholder = { Text(text = "Search about any city...", color = Whit37) },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = Color.Transparent,
             focusedBorderColor = Color.LightGray,
