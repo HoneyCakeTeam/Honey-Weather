@@ -23,12 +23,12 @@ import ui.viewmodel.ForecastItemUiState
 
 @Composable
 fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
-    Text(text = "Today", style = Typography.h3, modifier = Modifier.padding(horizontal = 32.dp))
+    Text(text = "Today", style = Typography.h3, modifier = Modifier.padding(horizontal = 16.dp))
     Spacer(modifier = Modifier.height(16.dp))
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(horizontal = 32.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
         items(todayWeatherItems) { forecastItem ->
             Box(

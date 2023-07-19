@@ -1,8 +1,6 @@
 package ui.screen
 
 import androidx.compose.animation.*
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -18,10 +16,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.koin.java.KoinJavaComponent.inject
 import ui.composable.BodyContent
-import ui.composable.CustomDivider
+import ui.composable.CustomVericalDivider
 import ui.composable.LoadingAnimation
 import ui.composable.SideBar
-import ui.theme.LoadingColor
 import ui.viewmodel.WeatherUiState
 import ui.viewmodel.WeatherViewModel
 
@@ -51,7 +48,7 @@ fun HomeContent(
         ) {
             Row {
                 SideBar(state)
-                CustomDivider()
+                CustomVericalDivider()
                 BodyContent(state)
             }
         }
