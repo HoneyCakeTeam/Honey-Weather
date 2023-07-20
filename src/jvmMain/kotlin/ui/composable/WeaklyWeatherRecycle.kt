@@ -34,8 +34,7 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
         contentPadding = PaddingValues(horizontal = 16.dp),
     ) {
         items(remainWeatherItems.size) { position ->
-            val forecastWeaklyRecycle = remainWeatherItems.filter { it.date != formatDate() }.distinctBy { it.date }
-            val forecastItem = forecastWeaklyRecycle[position]
+            val forecastItem = remainWeatherItems[position]
 
             Box(
                 modifier = Modifier
@@ -50,12 +49,12 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
             ) {
 
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    modifier = Modifier.fillMaxSize().padding(16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = formatDate(), style = Typography.h3)
+                        Text(text = formatDate(position), style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = forecastItem.time,
@@ -79,13 +78,16 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
     }
 }
 
-private val formatDate: () -> String = {
+private val formatDate: (Int) -> String = { position ->
     val currentDate = System.currentTimeMillis()
-    val dateObject = Date(currentDate)
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = currentDate
+
+    // Add the position (days) to the current date to get the date for the specific item
+    calendar.add(Calendar.DAY_OF_YEAR, position)
 
     // Format the date as the day of the week (e.g., Monday, Tuesday, etc.)
     val dayOfWeekFormat = SimpleDateFormat("EEEE", Locale.getDefault())
 
-    dayOfWeekFormat.format(dateObject)
+    dayOfWeekFormat.format(calendar.time)
 }
-
