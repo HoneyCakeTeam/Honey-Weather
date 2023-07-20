@@ -18,12 +18,6 @@ class GetWeatherDataUseCase(private val repo: WeatherRepo) {
             forecastDateTime.toLocalDate() == now
         }
 
-        // Get the temperature at 12:00 PM
-        val twelvePMTemperature = forecastData.forecastItems.find {
-            val forecastDateTime = LocalDateTime.parse(it.dateTime, formatter)
-            forecastDateTime.toLocalDate() != now && forecastDateTime.hour == 12
-        }
-
         val remainWeather = forecastData.forecastItems.filter {
             val forecastDateTime = LocalDateTime.parse(it.dateTime, formatter)
             val forecastDate = forecastDateTime.toLocalDate()
