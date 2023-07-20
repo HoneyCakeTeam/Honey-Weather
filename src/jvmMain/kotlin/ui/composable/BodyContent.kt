@@ -47,14 +47,14 @@ fun BodyContent(
                 "Wind",
                 "Today Wind Speed",
                 "${state.todayWeather.wind.speed} km/h",
-                "image/wind.png"
+                "image/wind (2).png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Max and Min Temperature",
                 "Max : ${animatedTemperature(state, temperature.maxTemperature).value}°",
                 "Min : ${animatedTemperature(state, temperature.minTemperature).value}°",
-                "image/temperature.png"
+                "image/hot.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
@@ -75,21 +75,21 @@ fun BodyContent(
                 "Pressure",
                 "Today Pressure",
                 "${state.todayWeather.weatherDescriptions.pressure} hpa",
-                "image/pressure2.png"
+                "image/cloudy (1).png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Humidity",
                 "Today Humidity",
                 "${state.todayWeather.weatherDescriptions.humidity} %",
-                "image/humidity.png"
+                "image/humidity6.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
                 "${state.todayWeather.visibility / 1000} km",
-                "image/wind.png"
+                "image/vis.png"
             )
         }
         Spacer(modifier = Modifier.weight(1f))
