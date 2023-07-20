@@ -15,10 +15,13 @@ fun ForecastItemDto.toForecastItemEntity(): ForecastItemEntity {
     val weatherDescription =
         main?.toWeatherDescriptionEntity() ?: throw IllegalStateException("Weather Description is missing.")
     val weatherEntities = weather?.map { it.toWeatherEntity() }
+    val cloudsEntity = clouds?.toCloudsEntity() ?: throw IllegalStateException("Clouds information is missing.")
     val windEntity = wind?.toWindEntity() ?: throw IllegalStateException("Wind information is missing.")
+
     return ForecastItemEntity(
         weatherDescription = weatherDescription,
         weather = weatherEntities ?: emptyList(),
+        clouds = cloudsEntity,
         visibility = visibility ?: 0,
         wind = windEntity,
         dateTime = textDate ?: "Empty Date"
@@ -60,5 +63,11 @@ fun CityDto.toEntity(): CityEntity {
         timezone = timezone ?: 0,
         sunrise = sunrise ?: 0L,
         sunset = sunset ?: 0L
+    )
+}
+
+fun CloudsDto.toCloudsEntity(): CloudsEntity {
+    return CloudsEntity(
+        allClouds = allClouds ?: 0
     )
 }

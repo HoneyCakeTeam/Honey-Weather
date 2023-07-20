@@ -13,7 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Speed
-import androidx.compose.material.icons.outlined.WindPower
+import androidx.compose.material.icons.outlined.WaterDrop
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -101,9 +101,11 @@ fun MainCard(
                     horizontalArrangement = Arrangement.spacedBy(32.dp),
                     verticalAlignment = CenterVertically
                 ) {
+                    val rainProbability = calculateRainProbability(state.todayWeather.clouds.allClouds)
+
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null, tint = White)
-                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa", color = White)
+                        Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null, tint = White)
+                        Text(text = rainProbability, color = White)
                     }
                     Text(text = "|", color = White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -162,11 +164,22 @@ fun MainCard(
     }
 }
 
-val getImageAccordingToTemperature: (WeatherUiState) -> String = {
+private val getImageAccordingToTemperature: (WeatherUiState) -> String = {
     val imagePath = when {
         !isNight() -> "image/sun_icon.jpg"
         else -> "image/moon.png"
     }
 
     imagePath
+}
+
+fun calculateRainProbability(cloudCoverPercentage: Int): String {
+    return when (cloudCoverPercentage) {
+        in 0..10 -> "No rains"
+        in 11..30 -> "Light rains"
+        in 31..70 -> "Moderate rains"
+        in 71..90 -> "Heavy rains"
+        in 91..100 -> "Very heavy rains"
+        else -> "Unknown"
+    }
 }

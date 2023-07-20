@@ -24,6 +24,7 @@ data class ForecastItemUiState(
     val weatherCondition: WeatherConditionUiState = WeatherConditionUiState(),
     val visibility: Int = 0,
     val wind: WindUiState = WindUiState(),
+    val clouds: CloudsUiState = CloudsUiState(),
     val date: String = "",
     val time: String = ""
 )
@@ -57,6 +58,10 @@ data class WindUiState(
     val gust: Double = 0.0
 )
 
+data class CloudsUiState(
+    val allClouds: Int = 0
+)
+
 fun WeatherEntity.toUiState(): WeatherItemUiState {
     return WeatherItemUiState(
         forecastItems = forecastItems.map { it.toForecastItemUiState() },
@@ -70,6 +75,7 @@ fun ForecastItemEntity.toForecastItemUiState(): ForecastItemUiState {
         weatherCondition = weather.first().toWeatherConditionUiState(),
         visibility = visibility,
         wind = wind.toWindUiState(),
+        clouds = clouds.toCloudsUiState(),
         date = convertToUserFriendlyDate(dateTime),
         time = convertToTimeFormat(dateTime)
     )
@@ -112,3 +118,8 @@ fun WindEntity.toWindUiState(): WindUiState {
     )
 }
 
+fun CloudsEntity.toCloudsUiState(): CloudsUiState {
+    return CloudsUiState(
+        allClouds = allClouds
+    )
+}
