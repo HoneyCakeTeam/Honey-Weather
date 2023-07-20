@@ -54,10 +54,10 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = formatDate(position), style = Typography.h3)
+                        Text(text = formatDate(position + 1), style = Typography.h3)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = forecastItem.time,
+                            text = forecastItem.date,
                             style = Typography.body2
                         )
                     }

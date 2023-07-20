@@ -90,7 +90,7 @@ fun BodyContent(
         Text(
             text = "Copyright @2023 The Chance - Honey Cake Team",
             style = Typography.body2,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 32.dp)
         )
     }
 }
