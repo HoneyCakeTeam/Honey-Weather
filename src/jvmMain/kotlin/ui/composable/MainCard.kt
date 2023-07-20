@@ -155,7 +155,7 @@ fun MainCard(
                     )
                 }
                 Image(
-                    painter = painterResource(getImageAccordingToTemperature(state)),
+                    painter = painterResource(getImageAccordingToTemperature()),
                     contentDescription = "Weather Picture",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
@@ -169,7 +169,7 @@ fun MainCard(
     }
 }
 
-private val getImageAccordingToTemperature: (WeatherUiState) -> String = {
+private val getImageAccordingToTemperature = {
     val imagePath = when {
         !isNight() -> "image/sun_icon.jpg"
         else -> "image/moon.png"

@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,7 @@ import ui.composable.BodyContent
 import ui.composable.CustomVericalDivider
 import ui.composable.LoadingAnimation
 import ui.composable.SideBar
+import ui.utils.isNight
 import ui.viewmodel.WeatherUiState
 import ui.viewmodel.WeatherViewModel
 
@@ -40,34 +43,44 @@ fun HomeContent(
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painterResource("image/photo_2.jpg"),
+            painterResource(getBackgroundImageAccordingToDay()),
             contentDescription = null,
             modifier = Modifier.fillMaxSize().blur(16.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply{setToScale(0.5f,0.5f,0.5f,1f)})
         )
-        AnimatedVisibility(
-            visible = !state.isLoading,
-            enter = fadeIn(animationSpec = tween(durationMillis = 1000)) + slideInHorizontally(),
-            exit = fadeOut(animationSpec = tween(durationMillis = 1000)) + slideOutHorizontally()
-        ) {
-            Row {
-                SideBar(state)
-                CustomVericalDivider()
-                BodyContent(state, onClickTemperatureType)
-            }
-        }
-        AnimatedVisibility(
-            visible = state.isLoading,
-            enter = fadeIn(animationSpec = tween(durationMillis = 500)),
-            exit = fadeOut(animationSpec = tween(durationMillis = 500))
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                LoadingAnimation(circleColor = Color.White)
-            }
+    }
+    AnimatedVisibility(
+        visible = !state.isLoading,
+        enter = fadeIn(animationSpec = tween(durationMillis = 1000)) + slideInHorizontally(),
+        exit = fadeOut(animationSpec = tween(durationMillis = 1000)) + slideOutHorizontally()
+    ) {
+        Row {
+            SideBar(state)
+            CustomVericalDivider()
+            BodyContent(state, onClickTemperatureType)
         }
     }
+    AnimatedVisibility(
+        visible = state.isLoading,
+        enter = fadeIn(animationSpec = tween(durationMillis = 500)),
+        exit = fadeOut(animationSpec = tween(durationMillis = 500))
+    ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            LoadingAnimation(circleColor = Color.White)
+        }
+    }
+}
+
+private val getBackgroundImageAccordingToDay = {
+    val imagePath = when {
+        !isNight() -> "image/clear_sky.jpg"
+        else -> "image/moon.jpg"
+    }
+
+    imagePath
 }
