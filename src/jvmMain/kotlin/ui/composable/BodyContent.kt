@@ -98,7 +98,7 @@ fun BodyContent(
 @Composable
 private fun animatedTemperature(state: WeatherUiState, temperature: Int): State<Int> {
     return animateIntAsState(
-        targetValue = if (state.isSelectedTemperatureInCelsius) temperature else temperature + 32,
+        targetValue = if (state.isSelectedTemperatureInCelsius) temperature else (temperature * 1.8).toInt() + 32,
         animationSpec = tween(durationMillis = 3000)
     )
 }
