@@ -46,19 +46,22 @@ fun BodyContent(
                 modifier = Modifier.weight(1F),
                 "Wind",
                 "Today Wind Speed",
-                "${state.todayWeather.wind.speed} km/h"
+                "${state.todayWeather.wind.speed} km/h",
+                "image/wind.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Max and Min Temperature",
                 "Max : ${animatedTemperature(state, temperature.minTemperature).value}°",
                 "Min : ${animatedTemperature(state, temperature.maxTemperature).value}°",
+                "image/temperature.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Sunrise and Sunset",
                 "Sunrise : ${convertFromUnixToDate(state.todayWeatherItems.city.sunriseTime)}",
-                "Sunset : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}"
+                "Sunset : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}",
+                "image/sunrise_sunset.png"
             )
 
         }
@@ -71,19 +74,22 @@ fun BodyContent(
                 modifier = Modifier.weight(1F),
                 "Pressure",
                 "Today Pressure",
-                "${state.todayWeather.weatherDescriptions.pressure} hpa"
+                "${state.todayWeather.weatherDescriptions.pressure} hpa",
+                "image/pressure2.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Humidity",
                 "Today Humidity",
-                "${state.todayWeather.weatherDescriptions.humidity} %"
+                "${state.todayWeather.weatherDescriptions.humidity} %",
+                "image/humidity.png"
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Visibility",
                 "Today Visibility",
-                "${state.todayWeather.visibility / 1000} km"
+                "${state.todayWeather.visibility / 1000} km",
+                "image/wind.png"
             )
         }
         Spacer(modifier = Modifier.weight(1f))
