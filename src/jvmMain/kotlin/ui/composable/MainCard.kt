@@ -102,7 +102,7 @@ fun MainCard(
                     verticalAlignment = CenterVertically
                 ) {
                     val rainProbability = calculateRainProbability(state.todayWeather.clouds.allClouds)
-
+                    val weatherDescription = state.todayWeather.weatherDescriptions
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(imageVector = Icons.Outlined.WaterDrop, contentDescription = null, tint = White)
                         Text(text = rainProbability, color = White)
@@ -110,21 +110,26 @@ fun MainCard(
                     Text(text = "|", color = White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(
-                            painter = painterResource("icon/sea_level.png"),
+                            painter = painterResource("image/sea_level.png"),
                             contentDescription = null,
                             tint = White,
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
                         Text(
-                            text = "${state.todayWeather.weatherDescriptions.seaLevelPressure} hpa",
+                            text = "${weatherDescription.seaLevelPressure} hpa",
                             color = White
                         )
                     }
                     Text(text = "|", color = White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = White)
+                        Icon(
+                            painter = painterResource("image/pressure.png"),
+                            contentDescription = null,
+                            tint = White,
+                            modifier = Modifier.size(ButtonDefaults.IconSize)
+                        )
                         Text(
-                            text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} hpa",
+                            text = "${weatherDescription.groundLevelPressure} hpa",
                             color = White
                         )
                     }
