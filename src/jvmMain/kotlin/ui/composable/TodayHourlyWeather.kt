@@ -19,10 +19,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ui.theme.Typography
 import ui.utils.getWeatherIconResource
-import ui.viewmodel.ForecastItemUiState
+import ui.viewmodel.WeatherUiState
 
 @Composable
-fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
+fun TodayHourlyWeather(state: WeatherUiState) {
     Text(text = "Today", style = Typography.h3, modifier = Modifier.padding(horizontal = 16.dp))
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -30,14 +30,14 @@ fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
-        items(todayWeatherItems) { forecastItem ->
+        items(state.todayWeatherItems.forecastItems) { forecastItem ->
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(color = Color.Transparent, shape = RoundedCornerShape(16.dp))
                     .border(
                         width = 1.dp,
-                        color =  Color.LightGray,
+                        color = Color.LightGray,
                         shape = RoundedCornerShape(16.dp)
                     )
                     .padding(all = 8.dp)
@@ -62,7 +62,7 @@ fun TodayHourlyWeather(todayWeatherItems: List<ForecastItemUiState>) {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "${forecastItem.weatherDescriptions.temperature}°",
+                        text = "${AnimatedTemperature(state, forecastItem.weatherDescriptions.temperature).value}°",
                         style = Typography.body1
                     )
                 }

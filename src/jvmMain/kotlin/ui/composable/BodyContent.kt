@@ -1,13 +1,10 @@
 package ui.composable
 
-import androidx.compose.animation.core.animateIntAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,7 +18,7 @@ fun BodyContent(
     onClickTemperatureType: () -> Unit
 ) {
     val temperature = state.todayWeather.weatherDescriptions
-    val animatedTemperature = animatedTemperature(state, temperature.temperature)
+    val animatedTemperature = AnimatedTemperature(state, temperature.temperature)
 
     Column(
         modifier = Modifier
@@ -52,8 +49,8 @@ fun BodyContent(
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Max and Min Temperature",
-                "Max : ${animatedTemperature(state, temperature.maxTemperature).value}°",
-                "Min : ${animatedTemperature(state, temperature.minTemperature).value}°",
+                "Max : ${AnimatedTemperature(state, temperature.maxTemperature).value}°",
+                "Min : ${AnimatedTemperature(state, temperature.minTemperature).value}°",
                 "image/hot.png"
             )
             TodayHighlightsCard(
@@ -99,12 +96,4 @@ fun BodyContent(
             modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 32.dp)
         )
     }
-}
-
-@Composable
-private fun animatedTemperature(state: WeatherUiState, temperature: Int): State<Int> {
-    return animateIntAsState(
-        targetValue = if (state.isSelectedTemperatureInCelsius) temperature else (temperature * 1.8).toInt() + 32,
-        animationSpec = tween(durationMillis = 3000)
-    )
 }

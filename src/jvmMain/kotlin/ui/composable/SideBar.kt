@@ -24,8 +24,8 @@ fun SideBar(state: WeatherUiState) {
         Spacer(modifier = Modifier.height(24.dp))
         CustomHorizontalDivider()
         Spacer(modifier = Modifier.height(24.dp))
-        TodayHourlyWeather(state.todayWeatherItems.forecastItems)
+        TodayHourlyWeather(state)
         Spacer(modifier = Modifier.height(8.dp))
-        WeaklyWeatherRecycle(state.remainWeatherItems.forecastItems)
+        WeaklyWeatherRecycle(state)
     }
 }

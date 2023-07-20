@@ -16,12 +16,13 @@ import androidx.compose.ui.unit.dp
 import ui.theme.Typography
 import ui.utils.getWeatherIconResource
 import ui.viewmodel.ForecastItemUiState
+import ui.viewmodel.WeatherUiState
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 @Composable
-fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
+fun WeaklyWeatherRecycle(state: WeatherUiState) {
     Spacer(modifier = Modifier.height(16.dp))
     Text(text = "Remain Days", style = Typography.h3, modifier = Modifier.padding(horizontal = 16.dp))
     Spacer(modifier = Modifier.height(16.dp))
@@ -30,8 +31,8 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
     ) {
-        items(remainWeatherItems.size) { position ->
-            val forecastItem = remainWeatherItems[position]
+        items(state.remainWeatherItems.forecastItems.size) { position ->
+            val forecastItem = state.remainWeatherItems.forecastItems[position]
 
             Box(
                 modifier = Modifier
@@ -60,7 +61,7 @@ fun WeaklyWeatherRecycle(remainWeatherItems: List<ForecastItemUiState>) {
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "${forecastItem.weatherDescriptions.temperature}°",
+                        text = "${AnimatedTemperature(state, forecastItem.weatherDescriptions.temperature).value}°",
                         style = Typography.h2
                     )
                     Spacer(modifier = Modifier.height(8.dp))
