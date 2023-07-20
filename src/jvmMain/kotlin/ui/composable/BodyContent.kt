@@ -52,8 +52,8 @@ fun BodyContent(
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
                 "Max and Min Temperature",
-                "Max : ${animatedTemperature(state, temperature.minTemperature).value}°",
-                "Min : ${animatedTemperature(state, temperature.maxTemperature).value}°",
+                "Max : ${animatedTemperature(state, temperature.maxTemperature).value}°",
+                "Min : ${animatedTemperature(state, temperature.minTemperature).value}°",
                 "image/temperature.png"
             )
             TodayHighlightsCard(
