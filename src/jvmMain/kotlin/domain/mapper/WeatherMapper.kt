@@ -47,12 +47,18 @@ fun Weather.toWeatherEntity(): WeatherConditionEntity {
 
 fun WindDto.toWindEntity(): WindEntity {
     return WindEntity(
-        speed = speed ?: 0.0, degree = degree ?: 0, gust = gust ?: 0.0
+        speed = speed ?: 0.0,
+        degree = degree ?: 0,
+        gust = gust ?: 0.0
     )
 }
 
 fun CityDto.toEntity(): CityEntity {
     return CityEntity(
-        name = name ?: "unknown", timezone = timezone ?: 0, sunrise = sunrise ?: 0L, sunset = sunset ?: 0L
+        name = name ?: "Unknown City",
+        country = country ?: "Unknown Country",
+        timezone = timezone ?: 0,
+        sunrise = sunrise ?: 0L,
+        sunset = sunset ?: 0L
     )
 }

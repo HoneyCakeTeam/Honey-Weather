@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,7 +30,7 @@ fun CustomChip(
         modifier = modifier.padding(end = 8.dp),
         elevation = 0.dp,
         shape = RoundedCornerShape(16.dp),
-        color = if (isSelected) Black else Transparent,
+        color = if (isSelected) White else Transparent,
         border = if (isSelected) BorderStroke(
             width = 0.dp,
             color = Transparent
@@ -44,7 +45,7 @@ fun CustomChip(
             Text(
                 text = "°$text",
                 style = MaterialTheme.typography.body2,
-                color = Color.White,
+                color = if (isSelected) Black else White,
                 fontWeight = FontWeight.Medium,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(12.dp)

@@ -1,6 +1,9 @@
 package ui.composable
 
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,10 +17,12 @@ import androidx.compose.material.icons.outlined.WindPower
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
@@ -60,13 +65,13 @@ fun MainCard(
                         text = "$animatedTemperature°",
                         style = Typography.h1.copy(fontSize = 100.sp),
                         modifier = Modifier.padding(top = 100.dp),
-                        color = Color.White
+                        color = White
                     )
                     Text(
                         text = "Today ${state.todayWeather.date}",
                         style = Typography.h3.copy(Whit87),
                         modifier = Modifier.padding(),
-                        color = Color.White
+                        color = White
                     )
                     Row(
                         verticalAlignment = CenterVertically,
@@ -77,12 +82,16 @@ fun MainCard(
                             imageVector = Icons.Outlined.LocationOn,
                             contentDescription = "Location Icon",
                             modifier = Modifier.size(ButtonDefaults.IconSize),
-                            tint = Color.White
+                            tint = White
                         )
                         Text(
                             text = state.todayWeatherItems.city.name,
-                            style = Typography.h2,
-                            color = Color.White
+                            style = Typography.h2.copy(White),
+                        )
+                        Text(
+                            text = ", ${state.todayWeatherItems.city.country}",
+                            style = Typography.caption.copy(White),
+                            modifier = Modifier.align(Alignment.Bottom)
                         )
                     }
                 }
@@ -93,28 +102,28 @@ fun MainCard(
                     verticalAlignment = CenterVertically
                 ) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null, tint = Color.White)
-                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa", color = Color.White)
+                        Icon(imageVector = Icons.Outlined.WindPower, contentDescription = null, tint = White)
+                        Text(text = "${state.todayWeather.weatherDescriptions.pressure} hpa", color = White)
                     }
-                    Text(text = "|", color = Color.White)
+                    Text(text = "|", color = White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(
                             painter = painterResource("icon/sea_level.png"),
                             contentDescription = null,
-                            tint = Color.White,
+                            tint = White,
                             modifier = Modifier.size(24.dp)
                         )
                         Text(
                             text = "${state.todayWeather.weatherDescriptions.seaLevelPressure} hpa",
-                            color = Color.White
+                            color = White
                         )
                     }
-                    Text(text = "|", color = Color.White)
+                    Text(text = "|", color = White)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = Color.White)
+                        Icon(imageVector = Icons.Outlined.Speed, contentDescription = null, tint = White)
                         Text(
                             text = "${state.todayWeather.weatherDescriptions.groundLevelPressure} hpa",
-                            color = Color.White
+                            color = White
                         )
                     }
                 }

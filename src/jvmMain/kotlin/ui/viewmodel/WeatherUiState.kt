@@ -46,6 +46,7 @@ data class WeatherDescriptionUiState(
 
 data class CityUiState(
     val name: String = "",
+    val country: String = "",
     val sunriseTime: Long = 0L,
     val sunsetTime: Long = 0L
 )
@@ -97,6 +98,7 @@ fun WeatherDescriptionEntity.toWeatherDescriptionUiState(): WeatherDescriptionUi
 fun CityEntity.toCityUiState(): CityUiState {
     return CityUiState(
         name = name,
+        country = country,
         sunriseTime = sunrise,
         sunsetTime = sunset
     )
