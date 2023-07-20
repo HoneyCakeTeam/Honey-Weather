@@ -1,11 +1,8 @@
 package ui.viewmodel
 
 import domain.entity.*
-import ui.utils.convertFromUnixToDate
 import ui.utils.convertToTimeFormat
 import ui.utils.convertToUserFriendlyDate
-import java.text.SimpleDateFormat
-import java.util.*
 
 data class WeatherUiState(
     val error: String = "",
@@ -13,7 +10,8 @@ data class WeatherUiState(
     val isError: Boolean = false,
     val todayWeather: ForecastItemUiState = ForecastItemUiState(),
     val todayWeatherItems: WeatherItemUiState = WeatherItemUiState(),
-    val remainWeatherItems: WeatherItemUiState = WeatherItemUiState()
+    val remainWeatherItems: WeatherItemUiState = WeatherItemUiState(),
+    val isSelectedTemperatureInCelsius: Boolean = true,
 )
 
 data class WeatherItemUiState(
@@ -23,7 +21,7 @@ data class WeatherItemUiState(
 
 data class ForecastItemUiState(
     val weatherDescriptions: WeatherDescriptionUiState = WeatherDescriptionUiState(),
-    val weatherCondition: WeatherConditionUiState= WeatherConditionUiState(),
+    val weatherCondition: WeatherConditionUiState = WeatherConditionUiState(),
     val visibility: Int = 0,
     val wind: WindUiState = WindUiState(),
     val date: String = "",

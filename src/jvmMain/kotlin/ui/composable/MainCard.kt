@@ -1,9 +1,6 @@
 package ui.composable
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -31,8 +29,13 @@ import ui.utils.isNight
 import ui.viewmodel.WeatherUiState
 
 @Composable
-fun MainCard(state: WeatherUiState) {
+fun MainCard(
+    state: WeatherUiState,
+    onClickTemperatureType: () -> Unit,
+    animatedTemperature: Int
+) {
     val animateOffset = remember { Animatable(0f) }
+
 
     LaunchedEffect(true) {
         while (true) {
@@ -54,7 +57,7 @@ fun MainCard(state: WeatherUiState) {
                     modifier = Modifier.background(Color.Transparent).padding(start = 32.dp)
                 ) {
                     Text(
-                        text = "${state.todayWeather.weatherDescriptions.temperature}°",
+                        text = "$animatedTemperature°",
                         style = Typography.h1.copy(fontSize = 100.sp),
                         modifier = Modifier.padding(top = 100.dp),
                         color = Color.White
@@ -116,25 +119,43 @@ fun MainCard(state: WeatherUiState) {
                     }
                 }
             }
-            Image(
-                painter = painterResource(getImageAccordingToTemperature(state)),
-                contentDescription = "Weather Picture",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .size(256.dp)
-                    .padding(end = 32.dp)
-                    .align(CenterVertically)
-                    .offset { IntOffset(0, animateOffset.value.toInt()) }
-            )
+            Column(
+                modifier = Modifier.fillMaxWidth().padding(end = 16.dp, top = 16.dp),
+                verticalArrangement = Arrangement.Top
+            ) {
+                Row(
+                    modifier = Modifier.padding(end = 16.dp, top = 16.dp).align(End),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    CustomChip(
+                        text = "C",
+                        isSelected = state.isSelectedTemperatureInCelsius,
+                        onClick = onClickTemperatureType
+                    )
+                    CustomChip(
+                        text = "F",
+                        isSelected = !state.isSelectedTemperatureInCelsius,
+                        onClick = onClickTemperatureType
+                    )
+                }
+                Image(
+                    painter = painterResource(getImageAccordingToTemperature(state)),
+                    contentDescription = "Weather Picture",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .size(256.dp)
+                        .padding(end = 32.dp)
+                        .align(End)
+                        .offset { IntOffset(0, animateOffset.value.toInt()) }
+                )
+            }
         }
     }
 }
 
-val getImageAccordingToTemperature: (WeatherUiState) -> String = { state ->
-    val temperature = state.todayWeather.weatherDescriptions.temperature
-
+val getImageAccordingToTemperature: (WeatherUiState) -> String = {
     val imagePath = when {
-        temperature >= 30 && !isNight() -> "image/sun_icon.jpg"
+        !isNight() -> "image/sun_icon.jpg"
         else -> "image/moon.png"
     }
 

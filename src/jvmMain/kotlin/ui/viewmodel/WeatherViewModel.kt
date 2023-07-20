@@ -50,4 +50,12 @@ class WeatherViewModel(
     private fun onGetWeatherError(error: String?) {
         _weatherUiState.update { it.copy(isLoading = false, isError = true) }
     }
+
+    fun toggleTemperatureType() {
+        _weatherUiState.update {
+            it.copy(
+                isSelectedTemperatureInCelsius = !it.isSelectedTemperatureInCelsius,
+            )
+        }
+    }
 }

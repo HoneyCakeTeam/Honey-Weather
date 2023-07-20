@@ -27,12 +27,16 @@ fun HomeScreen() {
     val weatherViewModel: WeatherViewModel by inject(WeatherViewModel::class.java)
     val state by weatherViewModel.weatherUiState.collectAsState()
 
-    HomeContent(state = state)
+    HomeContent(
+        state = state,
+        onClickTemperatureType = weatherViewModel::toggleTemperatureType
+    )
 }
 
 @Composable
 fun HomeContent(
-    state: WeatherUiState
+    state: WeatherUiState,
+    onClickTemperatureType: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -49,7 +53,7 @@ fun HomeContent(
             Row {
                 SideBar(state)
                 CustomVericalDivider()
-                BodyContent(state)
+                BodyContent(state, onClickTemperatureType)
             }
         }
         AnimatedVisibility(
