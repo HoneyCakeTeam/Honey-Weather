@@ -1,5 +1,9 @@
 package ui.composable
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -7,13 +11,18 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Speed
+import androidx.compose.material.icons.outlined.WindPower
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ui.theme.Typography
@@ -23,6 +32,16 @@ import ui.viewmodel.WeatherUiState
 
 @Composable
 fun MainCard(state: WeatherUiState) {
+    val animateOffset = remember { Animatable(0f) }
+
+    LaunchedEffect(true) {
+        while (true) {
+            animateOffset.animateTo(
+                50f,
+                animationSpec = infiniteRepeatable(tween(4000), RepeatMode.Reverse)
+            )
+        }
+    }
 
     Box {
         Row(
@@ -101,7 +120,11 @@ fun MainCard(state: WeatherUiState) {
                 painter = painterResource(getImageAccordingToTemperature(state)),
                 contentDescription = "Weather Picture",
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.size(256.dp).padding(end = 32.dp).align(CenterVertically)
+                modifier = Modifier
+                    .size(256.dp)
+                    .padding(end = 32.dp)
+                    .align(CenterVertically)
+                    .offset { IntOffset(0, animateOffset.value.toInt()) }
             )
         }
     }

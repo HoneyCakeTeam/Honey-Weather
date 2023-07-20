@@ -45,9 +45,9 @@ fun BodyContent(
             )
             TodayHighlightsCard(
                 modifier = Modifier.weight(1F),
-                "SunRise and SunSet",
-                "SunRise : ${convertFromUnixToDate(state.todayWeatherItems.city.sunriseTime)}",
-                "SunSet : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}"
+                "Sunrise and Sunset",
+                "Sunrise : ${convertFromUnixToDate(state.todayWeatherItems.city.sunriseTime)}",
+                "Sunset : ${convertFromUnixToDate(state.todayWeatherItems.city.sunsetTime)}"
             )
 
         }
